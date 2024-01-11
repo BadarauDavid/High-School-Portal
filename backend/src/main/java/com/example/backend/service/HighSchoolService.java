@@ -1,30 +1,28 @@
 package com.example.backend.service;
 
+import com.example.backend.model.Classroom;
 import com.example.backend.model.HighSchool;
 import com.example.backend.repository.HighSchoolRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.swing.plaf.LabelUI;
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class HighSchoolService {
     public final HighSchoolRepository highSchoolRepository;
-    @Autowired
-    public HighSchoolService(HighSchoolRepository highSchoolRepository){
-        this.highSchoolRepository = highSchoolRepository;
-    }
 
-    private void addHighSchool(HighSchool highSchool){
+
+    public void addHighSchool(HighSchool highSchool) {
         highSchoolRepository.save(highSchool);
     }
 
-    public List<HighSchool> getAllHighSchool (){
+    public List<HighSchool> getAllHighSchool() {
         return highSchoolRepository.findAll();
     }
 
-    public void updateHighSchoolById(Long id, HighSchool updatedHighSchool){
+    public void updateHighSchoolById(Long id, HighSchool updatedHighSchool) {
         HighSchool highSchoolFromDB = highSchoolRepository.getReferenceById(id);
 
         highSchoolFromDB.setName(updatedHighSchool.getName());
@@ -34,8 +32,17 @@ public class HighSchoolService {
     }
 
 
-    public void deleteHighSchoolById(Long id){
+    public void deleteHighSchoolById(Long id) {
         highSchoolRepository.deleteById(id);
+    }
+
+    public void addClassroom(HighSchool highSchool, Classroom classroom) {
+        List<Classroom> classroomsFromDb = highSchool.getClassroom();
+
+        classroomsFromDb.add(classroom);
+        highSchool.setClassroom(classroomsFromDb);
+
+        highSchoolRepository.save(highSchool);
     }
 
 }

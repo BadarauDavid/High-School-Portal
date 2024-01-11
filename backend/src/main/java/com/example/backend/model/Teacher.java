@@ -1,5 +1,6 @@
 package com.example.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,6 +26,7 @@ public class Teacher {
     @ManyToMany(mappedBy = "teachers")
     private List<Classroom> classroom;
 
-    @OneToMany(mappedBy="teacher")
+    @JsonIgnore
+    @OneToMany(mappedBy = "teacher")
     private List<Grade> grade;
 }

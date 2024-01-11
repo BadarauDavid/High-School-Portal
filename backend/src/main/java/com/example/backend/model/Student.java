@@ -4,7 +4,6 @@ package com.example.backend.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-
 import java.util.List;
 
 
@@ -25,9 +24,9 @@ public class Student {
 
 
     @ManyToOne
-    @JoinColumn(name="classroom_id", nullable=false)
+    @JoinColumn(name = "classroom_id", nullable = false)
     private Classroom classroom;
 
-    @OneToMany(mappedBy="student")
+    @OneToMany(mappedBy = "student")
     private List<Grade> grade;
 }

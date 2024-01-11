@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,9 +21,9 @@ public class Classroom {
 
     private String name;
 
-    @JsonIgnore
+
     @ManyToOne
-    @JoinColumn(name="highSchool_id", nullable=false)
+    @JoinColumn(name = "highSchool_id")
     private HighSchool highSchool;
 
     @JsonIgnore
@@ -36,8 +37,6 @@ public class Classroom {
             joinColumns = @JoinColumn(name = "classroom_id"),
             inverseJoinColumns = @JoinColumn(name = "teacher_id"))
     List<Teacher> teachers = new ArrayList<>();
-
-
 
 
 }

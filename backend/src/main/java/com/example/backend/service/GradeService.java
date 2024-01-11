@@ -2,30 +2,26 @@ package com.example.backend.service;
 
 import com.example.backend.model.Grade;
 import com.example.backend.repository.GradeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class GradeService {
     private final GradeRepository gradeRepository;
 
-    @Autowired
-    public GradeService(GradeRepository gradeRepository) {
-        this.gradeRepository = gradeRepository;
-    }
 
-
-    public void addGrade(Grade grade){
+    public void addGrade(Grade grade) {
         gradeRepository.save(grade);
     }
 
-    public List<Grade> getAllGrade(){
+    public List<Grade> getAllGrade() {
         return gradeRepository.findAll();
     }
 
-    public void updatedById(Long id, Grade updatedGrade){
+    public void updatedById(Long id, Grade updatedGrade) {
         Grade gradeFromDb = gradeRepository.getReferenceById(id);
 
         gradeFromDb.setGrade(updatedGrade.getGrade());
@@ -36,7 +32,7 @@ public class GradeService {
         gradeRepository.save(gradeFromDb);
     }
 
-    public void deleteGradeById(Long id){
+    public void deleteGradeById(Long id) {
         gradeRepository.deleteById(id);
     }
 }

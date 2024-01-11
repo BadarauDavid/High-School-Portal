@@ -1,9 +1,11 @@
 package com.example.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,7 +20,7 @@ public class HighSchool {
 
     private String name;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "highSchool")
     private List<Classroom> classroom;
 }
