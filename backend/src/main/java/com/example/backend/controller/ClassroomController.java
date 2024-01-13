@@ -2,6 +2,7 @@ package com.example.backend.controller;
 
 import com.example.backend.model.Classroom;
 import com.example.backend.service.ClassroomService;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
+
 @RequestMapping("api/classroom")
 public class ClassroomController {
     private final ClassroomService classroomService;
@@ -28,6 +30,7 @@ public class ClassroomController {
     public void updateById(@PathVariable("id") Long id, @RequestBody Classroom classroom) {
         classroomService.updateClassroomById(id, classroom);
     }
+
 
     @DeleteMapping("/admin/deleteById/{id}")
     public void deleteById(@PathVariable("id") Long id) {

@@ -1,6 +1,9 @@
 package com.example.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,6 +17,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "classrooms")
+
 public class Classroom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,12 +35,13 @@ public class Classroom {
     List<Student> students;
 
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "teachers_classrooms",
             joinColumns = @JoinColumn(name = "classroom_id"),
             inverseJoinColumns = @JoinColumn(name = "teacher_id"))
-    List<Teacher> teachers = new ArrayList<>();
+    List<Teacher> teachers;
 
 
 }

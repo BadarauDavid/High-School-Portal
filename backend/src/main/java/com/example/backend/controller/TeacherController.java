@@ -29,6 +29,11 @@ public class TeacherController {
         teacherService.updateTeacherById(id, teacher);
     }
 
+    @PutMapping("/admin/addClassroomToTeacher/{classroomId}/{teacherId}")
+    public void addClassroomToTeacher(@PathVariable("classroomId")Long classroomId, @PathVariable("teacherId")Long teacherId){
+        teacherService.addClassroom(classroomId,teacherId);
+    }
+
     @DeleteMapping("/admin/deleteById/{id}")
     public void deleteById(@PathVariable("id") Long id) {
         teacherService.deleteTeacherById(id);
