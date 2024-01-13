@@ -35,12 +35,10 @@ public class Classroom {
     List<Student> students;
 
 
-    @JsonIgnore
-    @ManyToMany
-    @JoinTable(
-            name = "teachers_classrooms",
-            joinColumns = @JoinColumn(name = "classroom_id"),
-            inverseJoinColumns = @JoinColumn(name = "teacher_id"))
+
+@JsonIgnore
+    @ManyToMany(mappedBy = "classroom")
+//    @JsonBackReference
     List<Teacher> teachers;
 
 

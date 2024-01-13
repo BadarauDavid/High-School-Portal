@@ -25,8 +25,12 @@ public class Teacher {
     @Embedded
     private UserDetails userDetails;
 
-
-    @ManyToMany(mappedBy = "teachers")
+   @ManyToMany
+    @JoinTable(
+            name = "teacher_classrooms",
+            joinColumns = @JoinColumn(name = "teacher_id"),
+            inverseJoinColumns = @JoinColumn(name = "classroom_id"))
+//    @JsonManagedReference
     private List<Classroom> classroom;
 
 
