@@ -1,8 +1,7 @@
 package com.example.backend.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.example.backend.enums.SubjectType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,8 +21,10 @@ public class Teacher {
     private Long id;
 
 
-    @Embedded
-    private UserDetails userDetails;
+    @OneToOne
+    private User user;
+
+    private SubjectType subjectType;
 
    @ManyToMany
     @JoinTable(

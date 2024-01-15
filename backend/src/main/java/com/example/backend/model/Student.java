@@ -1,7 +1,6 @@
 package com.example.backend.model;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,8 +21,8 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Embedded
-    private UserDetails userDetails;
+    @OneToOne
+    private User user;
 
 
     @ManyToOne

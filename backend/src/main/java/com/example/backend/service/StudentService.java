@@ -26,7 +26,6 @@ public class StudentService {
 
         studentFromDb.setClassroom(updatedStudent.getClassroom());
         studentFromDb.setGrade(updatedStudent.getGrade());
-        studentFromDb.setUserDetails(updatedStudent.getUserDetails());
 
         studentRepository.save(studentFromDb);
     }

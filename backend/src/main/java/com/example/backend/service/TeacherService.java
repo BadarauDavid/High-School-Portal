@@ -28,7 +28,7 @@ public class TeacherService {
 
         teacherFromDb.setClassroom(updatedTeacher.getClassroom());
         teacherFromDb.setGrade(updatedTeacher.getGrade());
-        teacherFromDb.setUserDetails(updatedTeacher.getUserDetails());
+        teacherFromDb.setUser(updatedTeacher.getUser());
 
         teacherRepository.save(teacherFromDb);
     }
