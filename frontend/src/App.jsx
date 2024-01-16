@@ -7,6 +7,7 @@ import AdminPanel from './pages/AdminPanel';
 import Classbook from './pages/Classbook';
 import StudentCard from './pages/StudentCard';
 import LoginPage from './pages/LoginPage';
+import ClassBooksList from './pages/ClassBooksList';
 
 function App() {
   return (
@@ -23,7 +24,13 @@ function App() {
                </RequireAuth>
           }/>
 
-             <Route path="/classbook" element={
+<Route path="/classbook" element={
+                //  <RequireAuth loginPath="/login">
+                <ClassBooksList/>
+              //  </RequireAuth>
+          }/>
+
+             <Route path="/classbook/:id" element={
                 //  <RequireAuth loginPath="/login">
                 <Classbook/>
               //  </RequireAuth>

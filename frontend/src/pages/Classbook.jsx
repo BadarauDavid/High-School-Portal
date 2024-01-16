@@ -1,12 +1,37 @@
 import ListGroup from "../components/ListGroup";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
 export default function Classbook(){
 
-    const   names = ["Matei","Mihai","Radu","Ana","Irina"];
-    const grades = ["3,5","10","7,6","7,3","4,6"];
+    const[students,setStudents]=useState(null);
+    const { id } = useParams();
+
+  useEffect(() => {
+    const fetchStudents = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/api/student/all/getAllByClassroomId/${id}`
+        );
+
+        const data = response.data;
+
+        setStudents(data);
+       
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchStudents();
+
+  }, []);
+
+
 return(
     <div className="container xl">
     <h1>
-        Classbook for "9B"
+        Classbook for "{students && students[0].classroom.name}"
     </h1>
 
 
@@ -15,9 +40,8 @@ return(
         firstTitle={"Name"}
         secondTitle={"Grades"}
         thirdTitle={"Add newGrade"}
-        firstElements={names}
-        secondElements={grades}
-        thirdElements={null}
+        studentGradeList={students}
+        isTeacher={true}
         />
     </div>
 )

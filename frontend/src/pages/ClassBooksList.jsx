@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import ListGroup from "../components/ListGroup";
 import Cookies from 'js-cookie';
 import axios from "axios";
-export default function StudentCard(){
-    const[student,setStudent]=useState(null);
+
+export default function ClassBooksList(){
+
+    const[teacher,setTeacher]=useState(null);
 
     const getEmailFromCookies = () => {
         const emailCookie = Cookies.get("_auth`_state");
@@ -15,39 +16,37 @@ export default function StudentCard(){
   const  email = getEmailFromCookies();
     
   useEffect(() => {
-    const fetchAds = async () => {
+    const fetchTeacher = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/student/all/getStudentByEmail/${email}`
+          `http://localhost:8080/api/teacher/teacher/getTeacherByEmail/${email}`
         );
 
         const data = response.data;
 
-        setStudent(data);
+        setTeacher(data);
        
       } catch (err) {
         console.log(err);
       }
     };
-    fetchAds();
+    fetchTeacher();
 
   }, []);
-
-   
     return(
         <div className="container xl">
         <h1>
-            {student?.user.firstName+" "+student?.user.lastName} student card
+            Classbook List  for {teacher?.user.firstName +" "+teacher?.user.lastName }
         </h1>
-        <ListGroup 
-        firstTitle={"Subject"}
-        secondTitle={"Grade"}
-        thirdTitle={"Teacher"}
-        studentGradeList={student?.grade}
-        isTeacher={null}
-        />
-    </div>
+
+        <ul class="list-group">
+
+            {teacher?.classroom.map((classRoom,index)=>(
+                <li key={index} className="list-group-item"><a href={`/classbook/${classRoom?.id}`}> {classRoom?.name}</a></li>
+            ))}
+
+
+</ul>
+        </div>
     )
-
-
 }
