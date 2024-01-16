@@ -1,4 +1,4 @@
-export default function ListGroup({firstTitle,secondTitle,thirdTitle,studentGradeList,isTeacher}){
+export default function ListGroup({firstTitle,secondTitle,thirdTitle,studentGradeList,isTeacher,teacherForClass}){
    
  
 
@@ -20,7 +20,7 @@ export default function ListGroup({firstTitle,secondTitle,thirdTitle,studentGrad
       
     
       {isTeacher ?(
-          <li key={grade.grade} className="list-group-item container-xl">7</li>
+          <li key={grade.grade} className="list-group-item container-xl">{grade.grade.filter(grade => grade.teacher.id === teacherForClass.id).map(grade => grade.grade).join(', ')}</li>
       ):(  <li key={grade.grade} className="list-group-item container-xl">{grade.grade}</li>)}
       
       {isTeacher ?(

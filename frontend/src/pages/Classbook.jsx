@@ -3,10 +3,20 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
-export default function Classbook(){
+import Cookies from 'js-cookie';
 
+export default function Classbook(){
+    const[teacher,setTeacher]=useState(null);
     const[students,setStudents]=useState(null);
     const { id } = useParams();
+
+    const getEmailFromCookies = () => {
+        const emailCookie = Cookies.get("_auth`_state");
+        const extractedEmail = emailCookie ? JSON.parse(emailCookie).email : null;
+        return extractedEmail;
+      };
+
+      const  email = getEmailFromCookies();
 
   useEffect(() => {
     const fetchStudents = async () => {
@@ -23,6 +33,23 @@ export default function Classbook(){
         console.log(err);
       }
     };
+
+    const fetchTeacher = async () => {
+        try {
+          const response = await axios.get(
+            `http://localhost:8080/api/teacher/teacher/getTeacherByEmail/${email}`
+          );
+  
+          const data = response.data;
+  
+          setTeacher(data);
+         
+        } catch (err) {
+          console.log(err);
+        }
+      };
+
+    fetchTeacher();  
     fetchStudents();
 
   }, []);
@@ -42,6 +69,7 @@ return(
         thirdTitle={"Add newGrade"}
         studentGradeList={students}
         isTeacher={true}
+        teacherForClass={teacher}
         />
     </div>
 )
