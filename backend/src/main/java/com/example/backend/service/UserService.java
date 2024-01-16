@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -25,4 +26,6 @@ public class UserService {
     public void deleteUserDetailsById(Long id) {
         userRepository.deleteById(id);
     }
+
+
 }

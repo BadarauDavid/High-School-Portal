@@ -1,5 +1,6 @@
 package com.example.backend.service;
 
+import com.example.backend.enums.SubjectType;
 import com.example.backend.model.Grade;
 import com.example.backend.model.Student;
 import com.example.backend.repository.GradeRepository;
@@ -14,18 +15,10 @@ import java.util.List;
 @Service
 public class GradeService {
     private final GradeRepository gradeRepository;
-//    private final StudentRepository studentRepository;
+
 
     public void addGrade(Grade grade) {
         gradeRepository.save(grade);
-
-//        Student studentFromDb = grade.getStudent();
-//        List<Grade> grades = studentFromDb.getGrade();
-//
-//        grades.add(grade);
-//        studentFromDb.setGrade(grades);
-//
-//        studentRepository.save(studentFromDb);
 
     }
 
@@ -43,7 +36,17 @@ public class GradeService {
         gradeRepository.save(gradeFromDb);
     }
 
+    public List<Grade> findAllByStudentId(Long id){
+      return   gradeRepository.findAllByStudentId(id);
+    }
+
     public void deleteGradeById(Long id) {
         gradeRepository.deleteById(id);
     }
+
+    public List<Grade> findAllByStudentIdAndSubject(Long id, String subjectTypeString){
+        SubjectType subjectType = SubjectType.valueOf(subjectTypeString.toUpperCase());
+      return   gradeRepository.findAllByStudentIdAndAndSubject(id,subjectType);
+    }
+
 }

@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -21,6 +22,10 @@ public class TeacherService {
 
     public List<Teacher> getAllTeacher() {
         return teacherRepository.findAll();
+    }
+
+    public Optional<Teacher> getTeacherByEmail(String email){
+        return teacherRepository.findTeacherByUser_Email(email);
     }
 
     public void updateTeacherById(Long id, Teacher updatedTeacher) {

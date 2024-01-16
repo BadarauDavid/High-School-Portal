@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
@@ -22,6 +23,11 @@ public class TeacherController {
     @GetMapping("/all/getAll")
     public List<Teacher> getAll() {
         return teacherService.getAllTeacher();
+    }
+
+    @GetMapping("/teacher/getTeacherByEmail/{email}")
+    public Optional<Teacher> findByEmail(@PathVariable("email") String email){
+      return   teacherService.getTeacherByEmail(email);
     }
 
     @PutMapping("/admin/updateById/{id}")

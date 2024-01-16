@@ -1,11 +1,13 @@
 package com.example.backend.controller;
 
 import com.example.backend.model.Student;
+import com.example.backend.model.User;
 import com.example.backend.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
@@ -22,6 +24,16 @@ public class StudentController {
     @GetMapping("/all/getAll")
     public List<Student> getAll() {
         return studentService.getAllStudents();
+    }
+
+    @GetMapping("/all/getStudentByEmail/{email}")
+    public Optional<Student > findStudentByEmail(@PathVariable("email") String email){
+        return studentService.findUserByEmail(email);
+    }
+
+    @GetMapping("/all/getAllByClassroomId/{id}")
+    public List<Student> findAllByClassroomId(@PathVariable("id") Long id){
+        return studentService.findAllByClassroomId(id);
     }
 
     @PutMapping("/admin/updateById/{id}")

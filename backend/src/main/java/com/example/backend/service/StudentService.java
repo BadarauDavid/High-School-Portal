@@ -1,11 +1,13 @@
 package com.example.backend.service;
 
 import com.example.backend.model.Student;
+import com.example.backend.model.User;
 import com.example.backend.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -21,6 +23,13 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
+    public Optional<Student> findUserByEmail(String email){
+      return   studentRepository.findStudentByUser_Email(email);
+    }
+
+    public List<Student> findAllByClassroomId(Long id){
+        return studentRepository.findAllByClassroom_Id(id);
+    }
     public void updateStudentById(Long id, Student updatedStudent) {
         Student studentFromDb = studentRepository.getReferenceById(id);
 
