@@ -9,6 +9,11 @@ export default function Classbook(){
     const[teacher,setTeacher]=useState(null);
     const[students,setStudents]=useState(null);
     const { id } = useParams();
+    const [signal,setSignal]=useState(true);
+
+    const getSignal = () =>{
+      setSignal(!signal);
+    }
 
     const getEmailFromCookies = () => {
         const emailCookie = Cookies.get("_auth`_state");
@@ -52,7 +57,7 @@ export default function Classbook(){
     fetchTeacher();  
     fetchStudents();
 
-  }, []);
+  }, [signal]);
 
 
 return(
@@ -70,6 +75,7 @@ return(
         studentGradeList={students}
         isTeacher={true}
         teacherForClass={teacher}
+        doSignal = {getSignal}
         />
     </div>
 )
