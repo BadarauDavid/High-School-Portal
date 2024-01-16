@@ -8,6 +8,9 @@ import Classbook from './pages/Classbook';
 import StudentCard from './pages/StudentCard';
 import LoginPage from './pages/LoginPage';
 import ClassBooksList from './pages/ClassBooksList';
+import CreateHighSchool from './pages/CreateHighSchool';
+import CreateClassroom from './pages/CreateClassroom';
+import CreateAccount from './pages/CreateAccount';
 
 function App() {
   return (
@@ -21,6 +24,24 @@ function App() {
           <Route path="/adminPanel" element={
                  <RequireAuth loginPath="/login">
                 <AdminPanel/>
+               </RequireAuth>
+          }/>
+
+<Route path="/adminPanel/createHighSchool" element={
+                 <RequireAuth loginPath="/login">
+                <CreateHighSchool/>
+               </RequireAuth>
+          }/>
+
+<Route path="/adminPanel/createClassroom" element={
+                 <RequireAuth loginPath="/login">
+                <CreateClassroom/>
+               </RequireAuth>
+          }/>
+
+<Route path="/adminPanel/register" element={
+                 <RequireAuth loginPath="/login">
+                <CreateAccount/>
                </RequireAuth>
           }/>
 
