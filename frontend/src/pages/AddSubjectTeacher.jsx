@@ -1,28 +1,27 @@
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useState , useEffect} from "react";
-
-export default function CreateClassroom(){
+import { useEffect,useState } from "react";
+import { useNavigate } from "react-router-dom";
+export default function AddSubjectTeacher(){
     const navigate = useNavigate();
-    const[highSchools,setHighSchools]=useState([]);
+    const[teachers,setTeachers]=useState([]);
     useEffect(() => {
      
-        const fetchHighSchools = async () => {
+        const fetchTeacher = async () => {
             try {
               const response = await axios.get(
-                `http://localhost:8080/api/highSchool/all/getAll`
+                `http://localhost:8080/api/teacher/admin/getAllTeacherWithSubjectEmpty`
               );
       
               const data = response.data;
       
-              setHighSchools(data);
+              setTeachers(data);
              
             } catch (err) {
               console.log(err);
             }
           };
     
-          fetchHighSchools();  
+          fetchTeacher();  
   
     
       }, []);
@@ -30,14 +29,16 @@ export default function CreateClassroom(){
    
     const onSubmit = async (values) => {
 
-  console.log(values.name);
+  console.log(values.teacher);
+  console.log(values.subject);
       try {
-        await axios.post(
-          `http://localhost:8080/api/classroom/admin/post`,
-          {
-            "name":values.name,
-            "highSchool":{"id":values.highSchool}
-          }
+        await axios.put(
+          `http://localhost:8080/api/teacher/admin/addSubjectType/${values.teacher}`,
+         values.subject,  {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            }
         );
         
         navigate("/adminPanel");
@@ -49,12 +50,12 @@ export default function CreateClassroom(){
     const onSave = (e) => {
       e.preventDefault();
       const formData = new FormData(e.target);
-      const classbookInfo = {
-        name: formData.get("name"),
-        highSchool: formData.get("highSchool")
+      const teacherInfo = {
+        teacher: formData.get("teacher"),
+        subject: formData.get("subject")
         
       };
-      onSubmit(classbookInfo);
+      onSubmit(teacherInfo);
     };
   
     return (
@@ -67,21 +68,25 @@ export default function CreateClassroom(){
                   <h1 className="mb-3">Create Classroom</h1>
   
                   <div className="form-outline mb-4">
-                    <input
-                    required   
-                      type="text"
-                      className="form-control"
-                      id="name"
-                      name="name"
-                      placeholder="Name"
-                    />
-                  </div>
+                    <select class="form-select form-select-lg mb-3" name="subject" aria-label="Large select example">
+  <option  selected disabled >Select Subject</option>
+
+ <option  value="ENGLISH">English</option>
+ <option value="ROMANIAN">Romanian</option>
+ <option value="MATH">Math</option>
+ <option value="INFORMATICS">Informatics</option>
+ <option value="HISTORY">History</option>
+
+ 
+
+</select>
+                    </div>
   
                     <div className="form-outline mb-4">
-                    <select class="form-select form-select-lg mb-3" name="highSchool" aria-label="Large select example">
-  <option  selected disabled >Select HighSchool</option>
-  {highSchools && highSchools.map((highSchool,index)=>(
- <option key={index} value={highSchool.id}>{highSchool.name}</option>
+                    <select class="form-select form-select-lg mb-3" name="teacher" aria-label="Large select example">
+  <option  selected disabled >Select Teacher</option>
+  {teachers && teachers.map((teacher,index)=>(
+ <option key={index} value={teacher.id}>{teacher.user.firstName+" "+teacher.user.lastName}</option>
   ))}
  
 

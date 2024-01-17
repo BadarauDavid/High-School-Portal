@@ -39,7 +39,7 @@ const postNewAd = async (student) => {
       
     
       {isTeacher ?(
-          <li key={grade.grade} className="list-group-item container-xl">{grade.grade.filter(grade => grade.teacher.id === teacherForClass.id).map(grade => grade.grade).join(', ')}</li>
+          <li key={grade.grade} className="list-group-item container-xl">{grade.grade.filter(grade => grade.teacher.id === teacherForClass.id).map(grade => grade.grade).join('; ')}</li>
       ):(  <li key={grade.grade} className="list-group-item container-xl">{grade.grade}</li>)}
       
       {isTeacher ?(
