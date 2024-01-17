@@ -1,5 +1,6 @@
 package com.example.backend.service;
 
+import com.example.backend.enums.SubjectType;
 import com.example.backend.model.Classroom;
 import com.example.backend.model.Teacher;
 import com.example.backend.repository.ClassroomRepository;
@@ -28,6 +29,10 @@ public class TeacherService {
         return teacherRepository.findTeacherByUser_Email(email);
     }
 
+    public List<Teacher> getAllTeacherWithSubjectEmpty(){
+        return teacherRepository.findAllBySubjectTypeIsNull();
+    }
+
     public void updateTeacherById(Long id, Teacher updatedTeacher) {
         Teacher teacherFromDb = teacherRepository.getReferenceById(id);
 
@@ -52,6 +57,13 @@ public class TeacherService {
 
     }
 
+    public void addSubjectType(SubjectType subjectType, Long id){
+        Teacher teacherFromDb = teacherRepository.getReferenceById(id);
+
+        teacherFromDb.setSubjectType(subjectType);
+
+        teacherRepository.save(teacherFromDb);
+    }
 
     public void deleteTeacherById(Long id) {
         teacherRepository.deleteById(id);

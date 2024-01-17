@@ -1,5 +1,6 @@
 package com.example.backend.controller;
 
+import com.example.backend.enums.SubjectType;
 import com.example.backend.model.Teacher;
 import com.example.backend.service.TeacherService;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,11 @@ public class TeacherController {
       return   teacherService.getTeacherByEmail(email);
     }
 
+    @GetMapping("/admin/getAllTeacherWithSubjectEmpty")
+    public List<Teacher> getAllTeacherWithSubjectEmpty(){
+        return teacherService.getAllTeacherWithSubjectEmpty();
+    }
+
     @PutMapping("/admin/updateById/{id}")
     public void updateById(@PathVariable("id") Long id, @RequestBody Teacher teacher) {
         teacherService.updateTeacherById(id, teacher);
@@ -38,6 +44,11 @@ public class TeacherController {
     @PutMapping("/admin/addClassroomToTeacher/{classroomId}/{teacherId}")
     public void addClassroomToTeacher(@PathVariable("classroomId")Long classroomId, @PathVariable("teacherId")Long teacherId){
         teacherService.addClassroom(classroomId,teacherId);
+    }
+
+    @PutMapping("/admin/addSubjectType/{id}")
+    public void addSubjectType(@RequestBody SubjectType subjectType, @PathVariable Long id){
+        teacherService.addSubjectType(subjectType,id);
     }
 
     @DeleteMapping("/admin/deleteById/{id}")
