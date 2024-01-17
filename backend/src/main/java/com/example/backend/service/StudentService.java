@@ -1,7 +1,9 @@
 package com.example.backend.service;
 
+import com.example.backend.model.Classroom;
 import com.example.backend.model.Student;
 import com.example.backend.model.User;
+import com.example.backend.repository.ClassroomRepository;
 import com.example.backend.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ import java.util.Optional;
 @Service
 public class StudentService {
     private final StudentRepository studentRepository;
+    private final ClassroomRepository classroomRepository;
 
 
     public void addStudent(Student student) {
@@ -37,6 +40,19 @@ public class StudentService {
         studentFromDb.setGrade(updatedStudent.getGrade());
 
         studentRepository.save(studentFromDb);
+    }
+
+
+    public void addClassroom(Long studentId, Long classroomId){
+        Student studentFromDb = studentRepository.getReferenceById(studentId);
+        Classroom classroomFromDb = classroomRepository.getReferenceById(classroomId);
+
+        studentFromDb.setClassroom(classroomFromDb);
+
+        studentRepository.save(studentFromDb);
+    }
+    public List<Student> findAllWithClassroomNull(){
+      return   studentRepository.findAllByClassroomIsNull();
     }
 
     public void deleteStudentById(Long id) {

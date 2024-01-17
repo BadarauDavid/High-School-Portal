@@ -36,9 +36,19 @@ public class StudentController {
         return studentService.findAllByClassroomId(id);
     }
 
+    @GetMapping("/admin/findAllWithClassroomEmpty")
+    public List<Student> findAllWithClassroomEmpty(){
+        return studentService.findAllWithClassroomNull();
+    }
+
     @PutMapping("/admin/updateById/{id}")
     public void updateById(@PathVariable("id") Long id, @RequestBody Student student) {
         studentService.updateStudentById(id, student);
+    }
+
+    @PutMapping("admin/addClassroom/{studentId}/{classroomId}")
+    public void addClassroom(@PathVariable("studentId") Long studentId,@PathVariable("classroomId") Long classroomId){
+        studentService.addClassroom(studentId,classroomId);
     }
 
     @DeleteMapping("/admin/deleteById/{id}")
