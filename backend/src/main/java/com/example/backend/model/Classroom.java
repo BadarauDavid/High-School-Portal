@@ -1,15 +1,11 @@
 package com.example.backend.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -38,11 +34,10 @@ public class Classroom {
     List<Student> students;
 
 
-
-@JsonIgnore
+    @JsonIgnore
     @ManyToMany(mappedBy = "classroom")
 //    @JsonBackReference
-@OnDelete(action = OnDeleteAction.CASCADE)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     List<Teacher> teachers;
 
 

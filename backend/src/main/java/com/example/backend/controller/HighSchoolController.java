@@ -19,7 +19,7 @@ public class HighSchoolController {
         highSchoolService.addHighSchool(highSchool);
     }
 
-    @GetMapping("/all/getAll")
+    @GetMapping("/admin/getAll")
     public List<HighSchool> getAll() {
         return highSchoolService.getAllHighSchool();
     }

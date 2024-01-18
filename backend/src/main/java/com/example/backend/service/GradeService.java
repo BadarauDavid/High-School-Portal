@@ -2,13 +2,10 @@ package com.example.backend.service;
 
 import com.example.backend.enums.SubjectType;
 import com.example.backend.model.Grade;
-import com.example.backend.model.Student;
 import com.example.backend.repository.GradeRepository;
-import com.example.backend.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -36,17 +33,17 @@ public class GradeService {
         gradeRepository.save(gradeFromDb);
     }
 
-    public List<Grade> findAllByStudentId(Long id){
-      return   gradeRepository.findAllByStudentId(id);
+    public List<Grade> findAllByStudentId(Long id) {
+        return gradeRepository.findAllByStudentId(id);
     }
 
     public void deleteGradeById(Long id) {
         gradeRepository.deleteById(id);
     }
 
-    public List<Grade> findAllByStudentIdAndSubject(Long id, String subjectTypeString){
+    public List<Grade> findAllByStudentIdAndSubject(Long id, String subjectTypeString) {
         SubjectType subjectType = SubjectType.valueOf(subjectTypeString.toUpperCase());
-      return   gradeRepository.findAllByStudentIdAndAndSubject(id,subjectType);
+        return gradeRepository.findAllByStudentIdAndAndSubject(id, subjectType);
     }
 
 }

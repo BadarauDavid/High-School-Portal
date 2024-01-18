@@ -8,7 +8,6 @@ import com.example.backend.repository.TeacherRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,11 +25,11 @@ public class TeacherService {
         return teacherRepository.findAll();
     }
 
-    public Optional<Teacher> getTeacherByEmail(String email){
+    public Optional<Teacher> getTeacherByEmail(String email) {
         return teacherRepository.findTeacherByUser_Email(email);
     }
 
-    public List<Teacher> getAllTeacherWithSubjectEmpty(){
+    public List<Teacher> getAllTeacherWithSubjectEmpty() {
         return teacherRepository.findAllBySubjectTypeIsNull();
     }
 
@@ -44,10 +43,9 @@ public class TeacherService {
         teacherRepository.save(teacherFromDb);
     }
 
-    public void addClassroom(Long classroomId, Long teacherId){
+    public void addClassroom(Long classroomId, Long teacherId) {
         Teacher teacherFromDb = teacherRepository.getReferenceById(teacherId);
         Classroom classroomFromDb = classroomRepository.getReferenceById(classroomId);
-
 
 
         List<Classroom> listTeacherClassroomsFromDb = teacherFromDb.getClassroom();
@@ -58,7 +56,7 @@ public class TeacherService {
 
     }
 
-    public void addSubjectType(SubjectType subjectType, Long id){
+    public void addSubjectType(SubjectType subjectType, Long id) {
         Teacher teacherFromDb = teacherRepository.getReferenceById(id);
 
         teacherFromDb.setSubjectType(subjectType);
@@ -77,7 +75,7 @@ public class TeacherService {
 //          classroomRepository.save(classroom);
 //        }
 
-                teacherRepository.deleteById(id);
+        teacherRepository.deleteById(id);
 //        teacher.setClassroom(Collections.emptyList());
     }
 

@@ -1,7 +1,6 @@
 package com.example.backend.controller;
 
 import com.example.backend.model.Student;
-import com.example.backend.model.User;
 import com.example.backend.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -27,17 +26,17 @@ public class StudentController {
     }
 
     @GetMapping("/all/getStudentByEmail/{email}")
-    public Optional<Student > findStudentByEmail(@PathVariable("email") String email){
+    public Optional<Student> findStudentByEmail(@PathVariable("email") String email) {
         return studentService.findUserByEmail(email);
     }
 
-    @GetMapping("/all/getAllByClassroomId/{id}")
-    public List<Student> findAllByClassroomId(@PathVariable("id") Long id){
+    @GetMapping("/teacher/getAllByClassroomId/{id}")
+    public List<Student> findAllByClassroomId(@PathVariable("id") Long id) {
         return studentService.findAllByClassroomId(id);
     }
 
     @GetMapping("/admin/findAllWithClassroomEmpty")
-    public List<Student> findAllWithClassroomEmpty(){
+    public List<Student> findAllWithClassroomEmpty() {
         return studentService.findAllWithClassroomNull();
     }
 
@@ -47,8 +46,8 @@ public class StudentController {
     }
 
     @PutMapping("admin/addClassroom/{studentId}/{classroomId}")
-    public void addClassroom(@PathVariable("studentId") Long studentId,@PathVariable("classroomId") Long classroomId){
-        studentService.addClassroom(studentId,classroomId);
+    public void addClassroom(@PathVariable("studentId") Long studentId, @PathVariable("classroomId") Long classroomId) {
+        studentService.addClassroom(studentId, classroomId);
     }
 
     @DeleteMapping("/admin/deleteById/{id}")

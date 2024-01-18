@@ -27,12 +27,12 @@ public class TeacherController {
     }
 
     @GetMapping("/teacher/getTeacherByEmail/{email}")
-    public Optional<Teacher> findByEmail(@PathVariable("email") String email){
-      return   teacherService.getTeacherByEmail(email);
+    public Optional<Teacher> findByEmail(@PathVariable("email") String email) {
+        return teacherService.getTeacherByEmail(email);
     }
 
     @GetMapping("/admin/getAllTeacherWithSubjectEmpty")
-    public List<Teacher> getAllTeacherWithSubjectEmpty(){
+    public List<Teacher> getAllTeacherWithSubjectEmpty() {
         return teacherService.getAllTeacherWithSubjectEmpty();
     }
 
@@ -42,13 +42,13 @@ public class TeacherController {
     }
 
     @PutMapping("/admin/addClassroomToTeacher/{classroomId}/{teacherId}")
-    public void addClassroomToTeacher(@PathVariable("classroomId")Long classroomId, @PathVariable("teacherId")Long teacherId){
-        teacherService.addClassroom(classroomId,teacherId);
+    public void addClassroomToTeacher(@PathVariable("classroomId") Long classroomId, @PathVariable("teacherId") Long teacherId) {
+        teacherService.addClassroom(classroomId, teacherId);
     }
 
     @PutMapping("/admin/addSubjectType/{id}")
-    public void addSubjectType(@RequestBody SubjectType subjectType, @PathVariable Long id){
-        teacherService.addSubjectType(subjectType,id);
+    public void addSubjectType(@RequestBody SubjectType subjectType, @PathVariable Long id) {
+        teacherService.addSubjectType(subjectType, id);
     }
 
     @DeleteMapping("/admin/deleteById/{id}")

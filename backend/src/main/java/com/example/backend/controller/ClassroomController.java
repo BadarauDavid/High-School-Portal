@@ -2,7 +2,6 @@ package com.example.backend.controller;
 
 import com.example.backend.model.Classroom;
 import com.example.backend.service.ClassroomService;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +20,7 @@ public class ClassroomController {
         classroomService.addClassroom(classroom);
     }
 
-    @GetMapping("/all/getAll")
+    @GetMapping("/admin/getAll")
     public List<Classroom> getAll() {
         return classroomService.getAllClassroom();
     }

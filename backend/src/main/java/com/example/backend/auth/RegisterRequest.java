@@ -1,7 +1,10 @@
 package com.example.backend.auth;
 
 import com.example.backend.enums.Role;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder

@@ -17,12 +17,12 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
-private final TeacherRepository teacherRepository;
-private final StudentRepository studentRepository;
-private final UserRepository userRepository;
-private final PasswordEncoder passwordEncoder;
-private final JwtService jwtService;
-private final AuthenticationManager authenticationManager;
+    private final TeacherRepository teacherRepository;
+    private final StudentRepository studentRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
+    private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder()
@@ -35,14 +35,14 @@ private final AuthenticationManager authenticationManager;
         userRepository.save(user);
 
 
-        if(request.getRole().equals(Role.ROLE_STUDENT)){
+        if (request.getRole().equals(Role.ROLE_STUDENT)) {
             Student student = Student.builder()
                     .user(user)
                     .build();
-        studentRepository.save(student);
+            studentRepository.save(student);
         }
 
-        if(request.getRole().equals(Role.ROLE_TEACHER)){
+        if (request.getRole().equals(Role.ROLE_TEACHER)) {
             Teacher teacher = Teacher.builder()
                     .user(user)
                     .build();

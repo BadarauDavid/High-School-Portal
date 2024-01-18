@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
@@ -20,12 +19,10 @@ public class UserController {
         userService.addUserDetail(user);
     }
 
-    @GetMapping("/all/getAll")
+    @GetMapping("/admin/getAll")
     public List<User> getAll() {
         return userService.getAllUserDetails();
     }
-
-
 
 
     @DeleteMapping("/admin/deleteById/{id}")

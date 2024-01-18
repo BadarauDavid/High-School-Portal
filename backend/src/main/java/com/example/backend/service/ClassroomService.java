@@ -1,9 +1,7 @@
 package com.example.backend.service;
 
 import com.example.backend.model.Classroom;
-import com.example.backend.model.Teacher;
 import com.example.backend.repository.ClassroomRepository;
-import com.example.backend.repository.TeacherRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -2,8 +2,6 @@ package com.example.backend.repository;
 
 import com.example.backend.enums.SubjectType;
 import com.example.backend.model.Grade;
-import com.example.backend.model.Student;
-import lombok.extern.java.Log;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

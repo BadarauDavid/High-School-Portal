@@ -2,7 +2,6 @@ package com.example.backend.service;
 
 import com.example.backend.model.Classroom;
 import com.example.backend.model.Student;
-import com.example.backend.model.User;
 import com.example.backend.repository.ClassroomRepository;
 import com.example.backend.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,13 +25,14 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public Optional<Student> findUserByEmail(String email){
-      return   studentRepository.findStudentByUser_Email(email);
+    public Optional<Student> findUserByEmail(String email) {
+        return studentRepository.findStudentByUser_Email(email);
     }
 
-    public List<Student> findAllByClassroomId(Long id){
+    public List<Student> findAllByClassroomId(Long id) {
         return studentRepository.findAllByClassroom_Id(id);
     }
+
     public void updateStudentById(Long id, Student updatedStudent) {
         Student studentFromDb = studentRepository.getReferenceById(id);
 
@@ -43,7 +43,7 @@ public class StudentService {
     }
 
 
-    public void addClassroom(Long studentId, Long classroomId){
+    public void addClassroom(Long studentId, Long classroomId) {
         Student studentFromDb = studentRepository.getReferenceById(studentId);
         Classroom classroomFromDb = classroomRepository.getReferenceById(classroomId);
 
@@ -51,8 +51,9 @@ public class StudentService {
 
         studentRepository.save(studentFromDb);
     }
-    public List<Student> findAllWithClassroomNull(){
-      return   studentRepository.findAllByClassroomIsNull();
+
+    public List<Student> findAllWithClassroomNull() {
+        return studentRepository.findAllByClassroomIsNull();
     }
 
     public void deleteStudentById(Long id) {
