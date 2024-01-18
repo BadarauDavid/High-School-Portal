@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import DefaultURL from "../utils/GlobalVar";
 
 export default function CreateHighSchool(){
     const navigate = useNavigate();
@@ -11,7 +11,7 @@ export default function CreateHighSchool(){
   
       try {
         await axios.post(
-          `http://localhost:8080/api/highSchool/admin/post`,
+          `${DefaultURL}/highSchool/admin/post`,
           values
         );
         

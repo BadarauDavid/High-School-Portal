@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import ListGroup from "../components/ListGroup";
 import Cookies from 'js-cookie';
 import axios from "axios";
+import DefaultURL from "../utils/GlobalVar";
+
 export default function StudentCard(){
     const[student,setStudent]=useState(null);
 
@@ -18,7 +20,7 @@ export default function StudentCard(){
     const fetchAds = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/student/all/getStudentByEmail/${email}`
+          `${DefaultURL}/student/all/getStudentByEmail/${email}`
         );
 
         const data = response.data;

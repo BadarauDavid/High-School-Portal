@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import DefaultURL from "../utils/GlobalVar";
 
 export default function CreateAccount(){
     const navigate = useNavigate();
@@ -11,7 +11,7 @@ export default function CreateAccount(){
   
       try {
         await axios.post(
-          `http://localhost:8080/api/auth/register`,
+          `${DefaultURL}/auth/register`,
           values
         );
         

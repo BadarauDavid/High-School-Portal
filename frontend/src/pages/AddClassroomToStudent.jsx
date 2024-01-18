@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect,useState } from "react";
 import { useNavigate } from "react-router-dom";
+import DefaultURL from "../utils/GlobalVar";
 export default function AddClassroomStudents(){
     const navigate = useNavigate();
     const[students,setStudents]=useState([]);
@@ -12,7 +13,7 @@ export default function AddClassroomStudents(){
         const fetchStudents = async () => {
             try {
               const response = await axios.get(
-                `http://localhost:8080/api/student/admin/findAllWithClassroomEmpty`
+                `${DefaultURL}/student/admin/findAllWithClassroomEmpty`
               );
       
               const data = response.data;
@@ -27,7 +28,7 @@ export default function AddClassroomStudents(){
           const fetchClassrooms = async () => {
             try {
               const response = await axios.get(
-                `http://localhost:8080/api/classroom/all/getAll`
+                `${DefaultURL}/classroom/all/getAll`
               );
       
               const data = response.data;
@@ -51,7 +52,7 @@ export default function AddClassroomStudents(){
 
       try {
         await axios.put(
-          `http://localhost:8080/api/student/admin/addClassroom/${values.student}/${values.classroom}`,
+          `${DefaultURL}/student/admin/addClassroom/${values.student}/${values.classroom}`,
           {
             headers: {
               'Content-Type': 'application/json',

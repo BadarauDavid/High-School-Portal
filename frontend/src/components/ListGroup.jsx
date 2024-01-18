@@ -1,19 +1,20 @@
 import { useState } from "react"
 import axios from "axios";
+import DefaultURL from "../utils/GlobalVar";
 export default function ListGroup({firstTitle,secondTitle,thirdTitle,studentGradeList,isTeacher,teacherForClass,doSignal}){
    
     const[gradeToSend,setGradeToSend]=useState(null);
  
 const handleSubmit = (student) =>{
-    postNewAd(student);
+    postGrade(student);
 }
    
-const postNewAd = async (student) => {
+const postGrade = async (student) => {
    
        
 
          await axios.post(
-          `http://localhost:8080/api/grade/admin/post`,
+          `${DefaultURL}/grade/admin/post`,
           {
             "subject":teacherForClass.subjectType,
             "grade":gradeToSend,

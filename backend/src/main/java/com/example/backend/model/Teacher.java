@@ -4,6 +4,8 @@ import com.example.backend.enums.SubjectType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.List;
 
@@ -22,6 +24,7 @@ public class Teacher {
 
 
     @OneToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
     private SubjectType subjectType;
@@ -32,10 +35,12 @@ public class Teacher {
             joinColumns = @JoinColumn(name = "teacher_id"),
             inverseJoinColumns = @JoinColumn(name = "classroom_id"))
 //    @JsonManagedReference
+   @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Classroom> classroom;
 
 
     @JsonIgnore
     @OneToMany(mappedBy = "teacher")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Grade> grade;
 }

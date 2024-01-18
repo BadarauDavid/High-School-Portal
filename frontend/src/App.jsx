@@ -13,6 +13,7 @@ import CreateClassroom from './pages/CreateClassroom';
 import CreateAccount from './pages/CreateAccount';
 import AddSubjectTeacher from './pages/AddSubjectTeacher';
 import AddClassroomStudents from './pages/AddClassroomToStudent';
+import AccountList from './pages/AccountListPage';
 
 function App() {
   return (
@@ -56,6 +57,12 @@ function App() {
 <Route path="/adminPanel/addClassroomStudents" element={
                  <RequireAuth loginPath="/login">
                 <AddClassroomStudents/>
+               </RequireAuth>
+          }/>
+
+<Route path="/adminPanel/accountList" element={
+                 <RequireAuth loginPath="/login">
+                <AccountList/>
                </RequireAuth>
           }/>
 

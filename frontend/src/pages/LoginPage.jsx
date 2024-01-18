@@ -2,7 +2,7 @@ import { useSignIn } from "react-auth-kit";
 import axios, { AxiosError } from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import DefaultURL from "../utils/GlobalVar";
 export default function LoginPage(){
     const navigate = useNavigate();
     const [error, setError] = useState("");
@@ -13,7 +13,7 @@ export default function LoginPage(){
   
       try {
         const response = await axios.post(
-          `http://localhost:8080/api/auth/authenticate`,
+          `${DefaultURL}/auth/authenticate`,
           values
         );
         signIn({

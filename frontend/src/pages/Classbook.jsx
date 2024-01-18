@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 import Cookies from 'js-cookie';
-
+import DefaultURL from "../utils/GlobalVar";
 export default function Classbook(){
     const[teacher,setTeacher]=useState(null);
     const[students,setStudents]=useState(null);
@@ -27,7 +27,7 @@ export default function Classbook(){
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/student/all/getAllByClassroomId/${id}`
+          `${DefaultURL}/student/all/getAllByClassroomId/${id}`
         );
 
         const data = response.data;
@@ -42,7 +42,7 @@ export default function Classbook(){
     const fetchTeacher = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:8080/api/teacher/teacher/getTeacherByEmail/${email}`
+            `${DefaultURL}/teacher/teacher/getTeacherByEmail/${email}`
           );
   
           const data = response.data;

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect,useState } from "react";
 import { useNavigate } from "react-router-dom";
+import DefaultURL from "../utils/GlobalVar";
 export default function AddSubjectTeacher(){
     const navigate = useNavigate();
     const[teachers,setTeachers]=useState([]);
@@ -9,7 +10,7 @@ export default function AddSubjectTeacher(){
         const fetchTeacher = async () => {
             try {
               const response = await axios.get(
-                `http://localhost:8080/api/teacher/admin/getAllTeacherWithSubjectEmpty`
+                `${DefaultURL}/teacher/admin/getAllTeacherWithSubjectEmpty`
               );
       
               const data = response.data;
@@ -33,7 +34,7 @@ export default function AddSubjectTeacher(){
   console.log(values.subject);
       try {
         await axios.put(
-          `http://localhost:8080/api/teacher/admin/addSubjectType/${values.teacher}`,
+          `${DefaultURL}/teacher/admin/addSubjectType/${values.teacher}`,
          values.subject,  {
             headers: {
               'Content-Type': 'application/json',

@@ -8,6 +8,7 @@ import com.example.backend.repository.TeacherRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,7 +67,18 @@ public class TeacherService {
     }
 
     public void deleteTeacherById(Long id) {
-        teacherRepository.deleteById(id);
+//        Teacher teacher = teacherRepository.getReferenceById(id);
+//        List<Classroom> classrooms = teacher.getClassroom();
+//
+//        for(Classroom classroom : classrooms){
+//          List<Teacher> teachers = classroom.getTeachers();
+//          teachers.remove(teacher);
+//          classroom.setTeachers(teachers);
+//          classroomRepository.save(classroom);
+//        }
+
+                teacherRepository.deleteById(id);
+//        teacher.setClassroom(Collections.emptyList());
     }
 
 }

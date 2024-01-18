@@ -12,8 +12,8 @@ export default function AdminPanel(){
         <li class="list-group-item list-group-item-warning"><a href="/adminPanel/addSubjectTeacher">Add Subject to Teacher</a></li>
         <li class="list-group-item list-group-item-warning"><a href="/adminPanel/addClassroomTeacher">Add Classroom to Teacher</a></li>
         <li class="list-group-item list-group-item-warning"><a href="/adminPanel/addClassroomStudents">Add Classroom to Student</a></li>
-        <li class="list-group-item list-group-item-danger"><a href="/adminPanel/deleteClassroom">Delete Classroom</a></li>
-        <li class="list-group-item list-group-item-danger"><a href="/adminPanel/deleteHighSchool">Delete HighSchool</a></li>
+        <li class="list-group-item list-group-item-info"><a href="/adminPanel/accountList">Account List</a></li>
+
 
 </ul>
 

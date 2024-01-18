@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +34,7 @@ public class Classroom {
 
     @JsonIgnore
     @OneToMany(mappedBy = "classroom")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     List<Student> students;
 
 
@@ -39,6 +42,7 @@ public class Classroom {
 @JsonIgnore
     @ManyToMany(mappedBy = "classroom")
 //    @JsonBackReference
+@OnDelete(action = OnDeleteAction.CASCADE)
     List<Teacher> teachers;
 
 

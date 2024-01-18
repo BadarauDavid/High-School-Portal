@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState , useEffect} from "react";
-
+import DefaultURL from "../utils/GlobalVar";
 export default function CreateClassroom(){
     const navigate = useNavigate();
     const[highSchools,setHighSchools]=useState([]);
@@ -10,7 +10,7 @@ export default function CreateClassroom(){
         const fetchHighSchools = async () => {
             try {
               const response = await axios.get(
-                `http://localhost:8080/api/highSchool/all/getAll`
+                `${DefaultURL}/highSchool/all/getAll`
               );
       
               const data = response.data;
@@ -33,7 +33,7 @@ export default function CreateClassroom(){
   console.log(values.name);
       try {
         await axios.post(
-          `http://localhost:8080/api/classroom/admin/post`,
+          `${DefaultURL}/classroom/admin/post`,
           {
             "name":values.name,
             "highSchool":{"id":values.highSchool}

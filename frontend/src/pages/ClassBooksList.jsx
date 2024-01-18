@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Cookies from 'js-cookie';
 import axios from "axios";
-
+import DefaultURL from "../utils/GlobalVar";
 export default function ClassBooksList(){
 
     const[teacher,setTeacher]=useState(null);
@@ -19,7 +19,7 @@ export default function ClassBooksList(){
     const fetchTeacher = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/teacher/teacher/getTeacherByEmail/${email}`
+          `${DefaultURL}/teacher/teacher/getTeacherByEmail/${email}`
         );
 
         const data = response.data;

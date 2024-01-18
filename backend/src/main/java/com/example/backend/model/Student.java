@@ -4,6 +4,8 @@ package com.example.backend.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,7 @@ public class Student {
     private Long id;
 
     @OneToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
 
@@ -32,5 +35,6 @@ public class Student {
 
     @JsonManagedReference
     @OneToMany(mappedBy = "student")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Grade> grade = new ArrayList<>();
 }
