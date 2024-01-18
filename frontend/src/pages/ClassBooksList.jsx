@@ -45,6 +45,9 @@ export default function ClassBooksList(){
   }, []);
     return(
         <div className="container xl">
+
+{teacher?.user.role === "ROLE_TEACHER" ? (
+  <div>
         <h1>
             Classbook List  for {teacher?.user.firstName +" "+teacher?.user.lastName }
         </h1>
@@ -58,5 +61,11 @@ export default function ClassBooksList(){
 
 </ul>
         </div>
-    )
+    ): (
+      <h1>
+        You need to be Teacher
+      </h1>
+      )}
+
+      </div>)
 }

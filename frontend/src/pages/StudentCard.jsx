@@ -26,7 +26,7 @@ export default function StudentCard(){
   const  email = getEmailFromCookies();
     
   useEffect(() => {
-    const fetchAds = async () => {
+    const fetchAccount = async () => {
       try {
         const response = await axios.get(
           `${DefaultURL}/student/all/getStudentByEmail/${email}`,
@@ -41,14 +41,16 @@ export default function StudentCard(){
         console.log(err);
       }
     };
-    fetchAds();
+    fetchAccount();
 
   }, []);
 
    
     return(
         <div className="container xl">
-        <h1>
+          {student?.user.role === "ROLE_STUDENT" ? (
+            <div>
+                     <h1>
             {student?.user.firstName+" "+student?.user.lastName} student card
         </h1>
         <ListGroup 
@@ -58,6 +60,15 @@ export default function StudentCard(){
         studentGradeList={student?.grade}
         isTeacher={null}
         />
+              </div>
+          ):(
+            <h1>
+              You need to be student
+            </h1>
+
+          )}
+
+ 
     </div>
     )
 

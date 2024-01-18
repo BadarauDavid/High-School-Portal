@@ -44,6 +44,7 @@ export default function CreateHighSchool(){
     };
   
     return (
+
       <form onSubmit={onSave} style={{ marginTop: 175 }}>
         <div className="container py-3 h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">

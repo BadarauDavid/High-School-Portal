@@ -68,11 +68,16 @@ export default function Classbook(){
     fetchTeacher();  
     fetchStudents();
 
+    console.log(students);
+    console.log(teacher);
+
   }, [signal]);
 
 
 return(
     <div className="container xl">
+
+
     <h1>
         Classbook for "{students && students[0].classroom.name}"
     </h1>
@@ -88,6 +93,7 @@ return(
         teacherForClass={teacher}
         doSignal = {getSignal}
         />
+
     </div>
 )
 }
