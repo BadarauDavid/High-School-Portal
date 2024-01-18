@@ -24,34 +24,41 @@ const postNewAd = async (student) => {
 }
 
     return(
-        <div>
-                    <ul className="list-group list-group-horizontal ">
-  <li className="list-group-item container-xl ">{firstTitle}</li>
-  <li className="list-group-item container-xl">{secondTitle}</li>
-  <li className="list-group-item container-xl">{thirdTitle}</li>
+        <table class="table">
 
-</ul>
+<thead>
+    <tr>
+    <th scope="col">#</th>
+      <th scope="col">{firstTitle}</th>
+      <th scope="col">{secondTitle}</th>
+      <th scope="col">{thirdTitle}</th>
+    </tr>
+  </thead>
+
 {studentGradeList && studentGradeList.map((grade,index)=>(
-    <ul key={index} className="list-group list-group-horizontal ">
+      <tbody>
+    <tr>
+    <th scope="row">{index+1}</th>
               {isTeacher ?(
-   <li key={grade.user.firstName} className="list-group-item container-xl">{grade.user.firstName+" "+grade.user.lastName}</li>
-      ):(<li key={grade.subject} className="list-group-item container-xl">{grade.subject}</li>)}
+   <td key={grade.user.firstName} >{grade.user.firstName+" "+grade.user.lastName}</td>
+      ):(<td key={grade.subject} >{grade.subject}</td>)}
       
     
       {isTeacher ?(
-          <li key={grade.grade} className="list-group-item container-xl">{grade.grade.filter(grade => grade.teacher.id === teacherForClass.id).map(grade => grade.grade).join('; ')}</li>
-      ):(  <li key={grade.grade} className="list-group-item container-xl">{grade.grade}</li>)}
+          <td key={grade.grade} >{grade.grade.filter(grade => grade.teacher.id === teacherForClass.id).map(grade => grade.grade).join('; ')}</td>
+      ):(  <td key={grade.grade} >{grade.grade}</td>)}
       
       {isTeacher ?(
-              <li key={index} className="list-group-item container-xl">
+              <td key={index} >
               <input onChange={(e)=>setGradeToSend(e.target.value)} type="number"   min="1" max="10" />
               <button onClick={()=>{doSignal();handleSubmit(grade)}} disabled={(gradeToSend<0 || gradeToSend >11)} type="button" className="btn btn-primary btn-sm mx-5">Send</button>
-              </li>
-      ):(<li key={grade.teacher.user.firstName} className=" list-group-item container-xl">{grade.teacher.user.firstName+" "+grade.teacher.user.lastName}</li>)}
+              </td>
+      ):(<td key={grade.teacher.user.firstName} >{grade.teacher.user.firstName+" "+grade.teacher.user.lastName}</td>)}
       
- </ul>
+      </tr>
+ </tbody>
 ))}
-        </div>
+       </table>
     )
  
 }
