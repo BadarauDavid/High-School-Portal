@@ -14,7 +14,7 @@ const postGrade = async (student) => {
        
 
          await axios.post(
-          `${DefaultURL}/grade/admin/post`,
+          `${DefaultURL}/grade/teacher/post`,
           {
             "subject":teacherForClass.subjectType,
             "grade":gradeToSend,
@@ -22,6 +22,7 @@ const postGrade = async (student) => {
             "student":{"id":student.id}
           }
         );   
+        doSignal();
 }
 
     return(
@@ -52,7 +53,7 @@ const postGrade = async (student) => {
       {isTeacher ?(
               <td key={index} >
               <input onChange={(e)=>setGradeToSend(e.target.value)} type="number"   min="1" max="10" />
-              <button onClick={()=>{doSignal();handleSubmit(grade)}} disabled={(gradeToSend<0 || gradeToSend >11)} type="button" className="btn btn-primary btn-sm mx-5">Send</button>
+              <button onClick={()=>{handleSubmit(grade)}} disabled={(gradeToSend<0 || gradeToSend >11)} type="button" className="btn btn-primary btn-sm mx-5">Send</button>
               </td>
       ):(<td key={grade.teacher.user.firstName} >{grade.teacher.user.firstName+" "+grade.teacher.user.lastName}</td>)}
       

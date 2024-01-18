@@ -11,7 +11,7 @@ export default function CreateAccount(){
   
       try {
         await axios.post(
-          `${DefaultURL}/auth/register`,
+          `${DefaultURL}/auth/admin/register`,
           values
         );
         

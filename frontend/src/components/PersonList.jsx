@@ -2,8 +2,9 @@ import axios from "axios"
 import DefaultURL from "../utils/GlobalVar";
 export default function PersonList({accounts,doSignal}){
 
-  const handleDelete = (account)=>{
-    axios.delete(`${DefaultURL}/user/admin/deleteById/${account.id}`)
+  const handleDelete =async (account)=>{
+   await axios.delete(`${DefaultURL}/user/admin/deleteById/${account.id}`)
+    doSignal();
 
   }
     return(
@@ -25,7 +26,7 @@ export default function PersonList({accounts,doSignal}){
                   <td key={acount.username} >{acount.firstName+" "+acount.lastName}</td>
                   <td key={acount.email} >{acount.email}</td>
                   <td key={2*index} >{acount.role}</td>
-                  <td key={index} ><button onClick={()=>{doSignal();handleDelete(acount)}} type="button" className="btn btn-primary btn-sm mx-5">Delete</button></td>
+                  <td key={index} ><button onClick={()=>{handleDelete(acount)}} type="button" className="btn btn-primary btn-sm mx-5">Delete</button></td>
                  </tr>
                   </tbody>))}
           </table>

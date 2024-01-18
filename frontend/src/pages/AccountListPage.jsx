@@ -14,7 +14,7 @@ useEffect(() => {
         const fetchUsers = async () => {
           try {
             const response = await axios.get(
-              `${DefaultURL}/user/all/getAll`
+              `${DefaultURL}/user/admin/getAll`
             );
     
             const data = response.data;

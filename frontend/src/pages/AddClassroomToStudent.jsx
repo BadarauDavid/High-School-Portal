@@ -28,7 +28,7 @@ export default function AddClassroomStudents(){
           const fetchClassrooms = async () => {
             try {
               const response = await axios.get(
-                `${DefaultURL}/classroom/all/getAll`
+                `${DefaultURL}/classroom/admin/getAll`
               );
       
               const data = response.data;

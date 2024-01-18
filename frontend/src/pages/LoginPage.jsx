@@ -13,7 +13,7 @@ export default function LoginPage(){
   
       try {
         const response = await axios.post(
-          `${DefaultURL}/auth/authenticate`,
+          `${DefaultURL}/auth/all/authenticate`,
           values
         );
         signIn({

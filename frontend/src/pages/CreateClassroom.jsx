@@ -10,7 +10,7 @@ export default function CreateClassroom(){
         const fetchHighSchools = async () => {
             try {
               const response = await axios.get(
-                `${DefaultURL}/highSchool/all/getAll`
+                `${DefaultURL}/highSchool/admin/getAll`
               );
       
               const data = response.data;
