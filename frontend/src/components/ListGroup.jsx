@@ -39,7 +39,7 @@ const postGrade = async (student) => {
 }
 
     return(
-        <table class="table">
+        <table className="table">
 
 <thead>
     <tr>
@@ -51,24 +51,24 @@ const postGrade = async (student) => {
   </thead>
 
 {studentGradeList && studentGradeList.map((grade,index)=>(
-      <tbody>
-    <tr>
+      <tbody key={index}>
+    <tr key={index}>
     <th scope="row">{index+1}</th>
               {isTeacher ?(
-   <td key={grade.user.firstName} >{grade.user.firstName+" "+grade.user.lastName}</td>
-      ):(<td key={grade.subject} >{grade.subject}</td>)}
+   <td  >{grade.user.firstName+" "+grade.user.lastName}</td>
+      ):(<td  >{grade.subject}</td>)}
       
     
       {isTeacher ?(
-          <td key={grade.grade} >{grade.grade.filter(grade => grade.teacher.id === teacherForClass.id).map(grade => grade.grade).join('; ')}</td>
-      ):(  <td key={grade.grade} >{grade.grade}</td>)}
+          <td  >{grade.grade.filter(grade => grade.teacher.id === teacherForClass.id).map(grade => grade.grade).join('; ')}</td>
+      ):(  <td  >{grade.grade}</td>)}
       
       {isTeacher ?(
-              <td key={index} >
+              <td  >
               <input onChange={(e)=>setGradeToSend(e.target.value)} type="number"   min="1" max="10" />
               <button onClick={()=>{handleSubmit(grade)}} disabled={(gradeToSend<0 || gradeToSend >11)} type="button" className="btn btn-primary btn-sm mx-5">Send</button>
               </td>
-      ):(<td key={grade.teacher.user.firstName} >{grade.teacher.user.firstName+" "+grade.teacher.user.lastName}</td>)}
+      ):(<td  >{grade.teacher.user.firstName+" "+grade.teacher.user.lastName}</td>)}
       
       </tr>
  </tbody>

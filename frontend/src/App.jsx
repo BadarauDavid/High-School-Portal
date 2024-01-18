@@ -67,21 +67,21 @@ function App() {
           }/>
 
 <Route path="/classbook" element={
-                //  <RequireAuth loginPath="/login">
+                 <RequireAuth loginPath="/login">
                 <ClassBooksList/>
-              //  </RequireAuth>
+               </RequireAuth>
           }/>
 
              <Route path="/classbook/:id" element={
-                //  <RequireAuth loginPath="/login">
+                 <RequireAuth loginPath="/login">
                 <Classbook/>
-              //  </RequireAuth>
+                </RequireAuth>
           }/>
 
 <Route path="/studentCard" element={
-                //  <RequireAuth loginPath="/login">
+                 <RequireAuth loginPath="/login">
                 <StudentCard/>
-              //  </RequireAuth>
+                </RequireAuth>
           }/>
         </Routes>
       </Router>

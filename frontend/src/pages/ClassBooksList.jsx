@@ -52,7 +52,7 @@ export default function ClassBooksList(){
             Classbook List  for {teacher?.user.firstName +" "+teacher?.user.lastName }
         </h1>
 
-        <ul class="list-group">
+        <ul className="list-group">
 
             {teacher?.classroom.map((classRoom,index)=>(
                 <li key={index} className="list-group-item"><a href={`/classbook/${classRoom?.id}`}> {classRoom?.name}</a></li>

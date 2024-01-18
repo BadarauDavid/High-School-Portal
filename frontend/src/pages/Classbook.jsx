@@ -68,9 +68,6 @@ export default function Classbook(){
     fetchTeacher();  
     fetchStudents();
 
-    console.log(students);
-    console.log(teacher);
-
   }, [signal]);
 
 

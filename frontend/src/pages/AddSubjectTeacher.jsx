@@ -83,8 +83,8 @@ export default function AddSubjectTeacher(){
                   <h1 className="mb-3">Add Subject for Teacher</h1>
   
                   <div className="form-outline mb-4">
-                    <select class="form-select form-select-lg mb-3" name="subject" aria-label="Large select example">
-  <option  selected disabled >Select Subject</option>
+                    <select defaultValue="Select Subject" className="form-select form-select-lg mb-3" name="subject" aria-label="Large select example">
+  <option   disabled >Select Subject</option>
 
  <option  value="ENGLISH">English</option>
  <option value="ROMANIAN">Romanian</option>
@@ -98,8 +98,8 @@ export default function AddSubjectTeacher(){
                     </div>
   
                     <div className="form-outline mb-4">
-                    <select class="form-select form-select-lg mb-3" name="teacher" aria-label="Large select example">
-  <option  selected disabled >Select Teacher</option>
+                    <select defaultValue="Select Teacher" className="form-select form-select-lg mb-3" name="teacher" aria-label="Large select example">
+  <option   disabled >Select Teacher</option>
   {teachers && teachers.map((teacher,index)=>(
  <option key={index} value={teacher.id}>{teacher.user.firstName+" "+teacher.user.lastName}</option>
   ))}

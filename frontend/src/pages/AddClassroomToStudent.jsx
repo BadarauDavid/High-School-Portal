@@ -102,8 +102,8 @@ export default function AddClassroomStudents(){
   
 
                   <div className="form-outline mb-4">
-                    <select class="form-select form-select-lg mb-3" name="student" aria-label="Large select example">
-  <option  selected disabled >Select Student</option>
+                    <select defaultValue="Select Student" className="form-select form-select-lg mb-3" name="student" aria-label="Large select example">
+  <option   disabled >Select Student</option>
   {students && students.map((student,index)=>(
  <option key={index} value={student.id}>{student.user.firstName+" "+student.user.lastName}</option>
   ))}
@@ -113,8 +113,8 @@ export default function AddClassroomStudents(){
                     </div>
   
                     <div className="form-outline mb-4">
-                    <select class="form-select form-select-lg mb-3" name="classroom" aria-label="Large select example">
-  <option  selected disabled >Select Classroom</option>
+                    <select defaultValue="Select Classroom" className="form-select form-select-lg mb-3" name="classroom" aria-label="Large select example">
+  <option   disabled >Select Classroom</option>
   {classrooms && classrooms.map((classroom,index)=>(
  <option key={index} value={classroom.id}>{classroom.name+" ("+classroom.highSchool.name+")"}</option>
   ))}

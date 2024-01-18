@@ -91,8 +91,8 @@ export default function CreateClassroom(){
                   </div>
   
                     <div className="form-outline mb-4">
-                    <select class="form-select form-select-lg mb-3" name="highSchool" aria-label="Large select example">
-  <option  selected disabled >Select HighSchool</option>
+                    <select defaultValue="Select HighSchool" className="form-select form-select-lg mb-3" name="highSchool" aria-label="Large select example">
+  <option   disabled >Select HighSchool</option>
   {highSchools && highSchools.map((highSchool,index)=>(
  <option key={index} value={highSchool.id}>{highSchool.name}</option>
   ))}

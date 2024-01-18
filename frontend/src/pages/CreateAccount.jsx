@@ -97,8 +97,8 @@ export default function CreateAccount(){
                   </div>
   
                   <div className="form-outline mb-4">
-                    <select class="form-select form-select-lg mb-3" name="role" aria-label="Large select example">
-  <option  selected disabled >Select Role</option>
+                    <select defaultValue="Select Role" className="form-select form-select-lg mb-3" name="role" aria-label="Large select example">
+  <option   disabled >Select Role</option>
 
  <option  value="ROLE_STUDENT">Student</option>
  <option value="ROLE_TEACHER">Teacher</option>
