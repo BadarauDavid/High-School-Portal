@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Cookies from 'js-cookie';
 import axios from "axios";
 import DefaultURL from "../utils/GlobalVar";
+import headers from "../utils/GlobalToken";
 export default function ClassBooksList(){
 
     const[teacher,setTeacher]=useState(null);
@@ -16,13 +17,6 @@ export default function ClassBooksList(){
   const  email = getEmailFromCookies();
 
   
-         const getTokenFromCookies = () => {
-          const tokenCookie = Cookies.get("_auth`");
-          return tokenCookie;
-        };
-  
-        const token ="Bearer "+ getTokenFromCookies();
-        const headers = { Authorization: token };
     
   useEffect(() => {
     const fetchTeacher = async () => {

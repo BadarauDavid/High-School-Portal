@@ -1,16 +1,9 @@
 import axios from "axios"
 import DefaultURL from "../utils/GlobalVar";
- import Cookies from 'js-cookie';
+import headers from "../utils/GlobalToken";
+ import { useNavigate } from "react-router-dom";
 export default function PersonList({accounts,doSignal}){
-
-
-    const getTokenFromCookies = () => {
-      const tokenCookie = Cookies.get("_auth`");
-      return tokenCookie;
-    };
-  
-  const token ="Bearer "+ getTokenFromCookies();
-  const headers = { Authorization: token };
+  const nav = useNavigate();
 
   const handleDelete =async (account)=>{
    await axios.delete(`${DefaultURL}/user/admin/deleteById/${account.id}`,
@@ -27,6 +20,7 @@ export default function PersonList({accounts,doSignal}){
           <th scope="col">Email</th>
           <th scope="col">Role</th>
           <th scope="col">Delete</th>
+          <th scope="col">EditClassroom</th>
         </tr>
       </thead>
       <tbody>
@@ -48,6 +42,20 @@ export default function PersonList({accounts,doSignal}){
                   Delete
                 </button>
               </td>
+              {account?.role === "ROLE_TEACHER" ?(
+ <td>
+ <button
+   onClick={() => {
+     nav(`/adminPanel/editClassroomTeacher/${account.id}`)
+   }}
+   type="button"
+   className="btn btn-primary btn-sm mx-5"
+ >
+   Edit
+ </button>
+</td>
+              ):(null)}
+             
             </tr>
           ))}
       </tbody>

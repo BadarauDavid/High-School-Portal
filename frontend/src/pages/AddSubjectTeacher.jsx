@@ -2,17 +2,10 @@ import axios from "axios";
 import { useEffect,useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DefaultURL from "../utils/GlobalVar";
-import Cookies from 'js-cookie';
+import headers from "../utils/GlobalToken";
 export default function AddSubjectTeacher(){
 
 
-        const getTokenFromCookies = () => {
-            const tokenCookie = Cookies.get("_auth`");
-            return tokenCookie;
-          };
-    
-          const token ="Bearer "+ getTokenFromCookies();
-          const headers = { Authorization: token };
     
 
     const navigate = useNavigate();
@@ -51,7 +44,7 @@ export default function AddSubjectTeacher(){
          values.subject,  {
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': token
+              'Authorization': headers.Authorization
             },
             }
         );

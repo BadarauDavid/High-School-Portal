@@ -1,20 +1,10 @@
 import { useState } from "react"
 import axios from "axios";
 import DefaultURL from "../utils/GlobalVar";
-import Cookies from 'js-cookie';
+import headers from "../utils/GlobalToken";
 export default function ListGroup({firstTitle,secondTitle,thirdTitle,studentGradeList,isTeacher,teacherForClass,doSignal}){
    
     const[gradeToSend,setGradeToSend]=useState(null);
-
-
-  
-    const getTokenFromCookies = () => {
-        const tokenCookie = Cookies.get("_auth`");
-        return tokenCookie;
-      };
-    
-    const token ="Bearer "+ getTokenFromCookies();
-    const headers = { Authorization: token };
  
 const handleSubmit = (student) =>{
     postGrade(student);

@@ -2,20 +2,14 @@ import axios from "axios";
 import { useEffect,useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DefaultURL from "../utils/GlobalVar";
-  import Cookies from 'js-cookie';
+import headers from "../utils/GlobalToken";
 export default function AddClassroomStudents(){
     const navigate = useNavigate();
     const[students,setStudents]=useState([]);
     const[classrooms,setClassrooms]=useState([]);
 
 
-        const getTokenFromCookies = () => {
-          const tokenCookie = Cookies.get("_auth`");
-          return tokenCookie;
-        };
-  
-        const token ="Bearer "+ getTokenFromCookies();
-        const headers = { Authorization: token };
+
   
 
     useEffect(() => {
@@ -69,7 +63,7 @@ export default function AddClassroomStudents(){
           {
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': token
+              'Authorization': headers.Authorization
             },
             }
         );

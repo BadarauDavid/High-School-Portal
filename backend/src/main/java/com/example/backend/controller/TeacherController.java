@@ -36,14 +36,20 @@ public class TeacherController {
         return teacherService.getAllTeacherWithSubjectEmpty();
     }
 
+    @GetMapping("/admin/findTeacherByUserId/{id}")
+    public Optional<Teacher> findTeacherByUserId(@PathVariable Long id) {
+        return teacherService.findTeacherByUserId(id);
+    }
+
+
     @PutMapping("/admin/updateById/{id}")
     public void updateById(@PathVariable("id") Long id, @RequestBody Teacher teacher) {
         teacherService.updateTeacherById(id, teacher);
     }
 
-    @PutMapping("/admin/addClassroomToTeacher/{classroomId}/{teacherId}")
-    public void addClassroomToTeacher(@PathVariable("classroomId") Long classroomId, @PathVariable("teacherId") Long teacherId) {
-        teacherService.addClassroom(classroomId, teacherId);
+    @PutMapping("/admin/addOrDeleteClassroomToTeacher/{typeOfAction}/{classroomId}/{teacherId}")
+    public void addClassroomToTeacher(@PathVariable("classroomId") Long classroomId, @PathVariable("teacherId") Long teacherId, @PathVariable String typeOfAction) {
+        teacherService.addOrDeleteClassroom(classroomId, teacherId,typeOfAction);
     }
 
     @PutMapping("/admin/addSubjectType/{id}")

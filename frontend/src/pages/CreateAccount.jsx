@@ -1,18 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import DefaultURL from "../utils/GlobalVar";
-      import Cookies from 'js-cookie';
+import headers from "../utils/GlobalToken";
 export default function CreateAccount(){
     const navigate = useNavigate();
 
-    
-             const getTokenFromCookies = () => {
-                const tokenCookie = Cookies.get("_auth`");
-                return tokenCookie;
-              };
-        
-              const token ="Bearer "+ getTokenFromCookies();
-              const headers = { Authorization: token };
+ 
   
     const onSubmit = async (values) => {
 

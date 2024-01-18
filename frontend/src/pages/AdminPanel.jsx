@@ -1,18 +1,11 @@
 import { useEffect, useState } from "react";
-import ListGroup from "../components/ListGroup";
 import Cookies from 'js-cookie';
 import axios from "axios";
 import DefaultURL from "../utils/GlobalVar";
+import headers from "../utils/GlobalToken";
 
 export default function AdminPanel(){
 const [admin,setAdmin]=useState(null);
-    const getTokenFromCookies = () => {
-        const tokenCookie = Cookies.get("_auth`");
-        return tokenCookie;
-      };
-  
-      const token ="Bearer "+ getTokenFromCookies();
-      const headers = { Authorization: token };
 
     const getEmailFromCookies = () => {
         const emailCookie = Cookies.get("_auth`_state");
@@ -58,7 +51,6 @@ const [admin,setAdmin]=useState(null);
         <li className="list-group-item list-group-item-success"><a href="/adminPanel/createClassroom">Create Classroom</a></li>
         <li className="list-group-item list-group-item-success"><a href="/adminPanel/register">Create Account</a></li>
         <li className="list-group-item list-group-item-warning"><a href="/adminPanel/addSubjectTeacher">Add Subject to Teacher</a></li>
-        <li className="list-group-item list-group-item-warning"><a href="/adminPanel/addClassroomTeacher">Add Classroom to Teacher</a></li>
         <li className="list-group-item list-group-item-warning"><a href="/adminPanel/addClassroomStudents">Add Classroom to Student</a></li>
         <li className="list-group-item list-group-item-info"><a href="/adminPanel/accountList">Account List</a></li>
 

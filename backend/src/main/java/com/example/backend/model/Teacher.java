@@ -29,7 +29,7 @@ public class Teacher {
 
     private SubjectType subjectType;
 
-   @ManyToMany(cascade = CascadeType.ALL)
+   @ManyToMany
     @JoinTable(
             name = "teacher_classrooms",
             joinColumns = @JoinColumn(name = "teacher_id"),

@@ -3,18 +3,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import DefaultURL from "../utils/GlobalVar";
 
-import Cookies from 'js-cookie';
+import headers from "../utils/GlobalToken";
 export default function AccountList(){
 const[allUsers,setAllusers]=useState([]);
 const[signal,setSignal] = useState(true);
 
-    const getTokenFromCookies = () => {
-        const tokenCookie = Cookies.get("_auth`");
-        return tokenCookie;
-      };
 
-      const token ="Bearer "+ getTokenFromCookies();
-      const headers = { Authorization: token };
 
 
 const getSignal = () =>{

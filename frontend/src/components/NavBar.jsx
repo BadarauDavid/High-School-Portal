@@ -15,6 +15,7 @@ export default function NavBar(){
   <div className="container-fluid container-xxl">
     <a className="navbar-brand" href="/">
         <img 
+        alt="logo"
         src={logo}
         style={{ maxWidth: 40 }}/>
     </a>

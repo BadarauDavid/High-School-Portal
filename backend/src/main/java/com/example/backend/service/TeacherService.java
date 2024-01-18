@@ -43,13 +43,18 @@ public class TeacherService {
         teacherRepository.save(teacherFromDb);
     }
 
-    public void addClassroom(Long classroomId, Long teacherId) {
+    public void addOrDeleteClassroom(Long classroomId, Long teacherId,String typeOfAction) {
         Teacher teacherFromDb = teacherRepository.getReferenceById(teacherId);
         Classroom classroomFromDb = classroomRepository.getReferenceById(classroomId);
 
-
         List<Classroom> listTeacherClassroomsFromDb = teacherFromDb.getClassroom();
-        listTeacherClassroomsFromDb.add(classroomFromDb);
+
+        switch (typeOfAction.toLowerCase()){
+            case "add" -> { listTeacherClassroomsFromDb.add(classroomFromDb);}
+            case "delete" -> {listTeacherClassroomsFromDb.remove(classroomFromDb);}
+        }
+
+
         teacherFromDb.setClassroom(listTeacherClassroomsFromDb);
 
         teacherRepository.save(teacherFromDb);
@@ -64,19 +69,13 @@ public class TeacherService {
         teacherRepository.save(teacherFromDb);
     }
 
-    public void deleteTeacherById(Long id) {
-//        Teacher teacher = teacherRepository.getReferenceById(id);
-//        List<Classroom> classrooms = teacher.getClassroom();
-//
-//        for(Classroom classroom : classrooms){
-//          List<Teacher> teachers = classroom.getTeachers();
-//          teachers.remove(teacher);
-//          classroom.setTeachers(teachers);
-//          classroomRepository.save(classroom);
-//        }
+    public Optional<Teacher> findTeacherByUserId(Long id){
+      return   teacherRepository.findTeacherByUser_Id(id);
+    }
 
+
+    public void deleteTeacherById(Long id) {
         teacherRepository.deleteById(id);
-//        teacher.setClassroom(Collections.emptyList());
     }
 
 }

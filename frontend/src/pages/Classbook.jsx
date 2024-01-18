@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import Cookies from 'js-cookie';
 import DefaultURL from "../utils/GlobalVar";
+import headers from "../utils/GlobalToken";
 export default function Classbook(){
     const[teacher,setTeacher]=useState(null);
     const[students,setStudents]=useState(null);
@@ -15,14 +16,7 @@ export default function Classbook(){
       setSignal(!signal);
     }
 
-   
-        const getTokenFromCookies = () => {
-          const tokenCookie = Cookies.get("_auth`");
-          return tokenCookie;
-        };
   
-        const token ="Bearer "+ getTokenFromCookies();
-        const headers = { Authorization: token };
 
     const getEmailFromCookies = () => {
         const emailCookie = Cookies.get("_auth`_state");

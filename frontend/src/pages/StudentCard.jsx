@@ -3,18 +3,11 @@ import ListGroup from "../components/ListGroup";
 import Cookies from 'js-cookie';
 import axios from "axios";
 import DefaultURL from "../utils/GlobalVar";
+import headers from "../utils/GlobalToken";
 
 export default function StudentCard(){
     const[student,setStudent]=useState(null);
 
- 
-    const getTokenFromCookies = () => {
-      const tokenCookie = Cookies.get("_auth`");
-      return tokenCookie;
-    };
-
-    const token ="Bearer "+ getTokenFromCookies();
-    const headers = { Authorization: token };
 
     const getEmailFromCookies = () => {
         const emailCookie = Cookies.get("_auth`_state");
