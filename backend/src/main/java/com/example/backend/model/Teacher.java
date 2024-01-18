@@ -29,13 +29,12 @@ public class Teacher {
 
     private SubjectType subjectType;
 
-    @ManyToMany
+   @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "teacher_classrooms",
             joinColumns = @JoinColumn(name = "teacher_id"),
             inverseJoinColumns = @JoinColumn(name = "classroom_id"))
 //    @JsonManagedReference
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Classroom> classroom;
 
 

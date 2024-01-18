@@ -18,13 +18,15 @@ export default function CreateAccount(){
 
   
       try {
-        await axios.post(
+      const response =  await axios.post(
           `${DefaultURL}/auth/admin/register`,
           values,
           {headers}
         );
-        
-        navigate("/adminPanel");
+        if(response.status === 200){
+           navigate("/adminPanel");
+        }
+       
       } catch (err) {
         console.log(err);
       }

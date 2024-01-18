@@ -29,7 +29,7 @@ public class SecurityConfiguration {
                                 .requestMatchers("api/grade/teacher/**","api/student/teacher/**","api/teacher/teacher/**").hasRole("TEACHER")
                                         .requestMatchers("/api/grade/all/**","api/auth/all/**","/api/student/all/**","/api/teacher/all/**").permitAll()
                                         .requestMatchers("/api/**").hasRole("ADMIN")
-
+//                                        .requestMatchers("/**").permitAll()
                                         .anyRequest()
                                         .authenticated()
                 ).sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

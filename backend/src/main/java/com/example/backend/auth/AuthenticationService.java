@@ -25,34 +25,38 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
-        var user = User.builder()
-                .firstName(request.getFirstName())
-                .lastName(request.getLastName())
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .role(request.getRole())
-                .build();
-        userRepository.save(user);
-
-
-        if (request.getRole().equals(Role.ROLE_STUDENT)) {
-            Student student = Student.builder()
-                    .user(user)
+        if(userRepository.findByEmail(request.getEmail()).isEmpty()){
+            var user = User.builder()
+                    .firstName(request.getFirstName())
+                    .lastName(request.getLastName())
+                    .email(request.getEmail())
+                    .password(passwordEncoder.encode(request.getPassword()))
+                    .role(request.getRole())
                     .build();
-            studentRepository.save(student);
+            userRepository.save(user);
+
+
+            if (request.getRole().equals(Role.ROLE_STUDENT)) {
+                Student student = Student.builder()
+                        .user(user)
+                        .build();
+                studentRepository.save(student);
+            }
+
+            if (request.getRole().equals(Role.ROLE_TEACHER)) {
+                Teacher teacher = Teacher.builder()
+                        .user(user)
+                        .build();
+                teacherRepository.save(teacher);
+            }
+
+            var jwtToken = jwtService.generateToken(user);
+            return AuthenticationResponse.builder()
+                    .token(jwtToken)
+                    .build();
         }
 
-        if (request.getRole().equals(Role.ROLE_TEACHER)) {
-            Teacher teacher = Teacher.builder()
-                    .user(user)
-                    .build();
-            teacherRepository.save(teacher);
-        }
-
-        var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse.builder()
-                .token(jwtToken)
-                .build();
+        return null;
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {

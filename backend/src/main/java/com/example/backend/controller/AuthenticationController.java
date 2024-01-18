@@ -4,6 +4,7 @@ import com.example.backend.auth.AuthenticationRequest;
 import com.example.backend.auth.AuthenticationResponse;
 import com.example.backend.auth.AuthenticationService;
 import com.example.backend.auth.RegisterRequest;
+import com.nimbusds.oauth2.sdk.http.HTTPResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,9 @@ public class AuthenticationController {
 
     @PostMapping("/admin/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
+        if (authenticationService.register(request) == null){
+            return ResponseEntity.badRequest().build();
+        }
         return ResponseEntity.ok(authenticationService.register(request));
     }
 
