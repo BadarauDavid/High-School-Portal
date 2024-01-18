@@ -14,12 +14,22 @@ export default function ClassBooksList(){
 
 
   const  email = getEmailFromCookies();
+
+  
+         const getTokenFromCookies = () => {
+          const tokenCookie = Cookies.get("_auth`");
+          return tokenCookie;
+        };
+  
+        const token ="Bearer "+ getTokenFromCookies();
+        const headers = { Authorization: token };
     
   useEffect(() => {
     const fetchTeacher = async () => {
       try {
         const response = await axios.get(
-          `${DefaultURL}/teacher/teacher/getTeacherByEmail/${email}`
+          `${DefaultURL}/teacher/teacher/getTeacherByEmail/${email}`,
+          {headers}
         );
 
         const data = response.data;

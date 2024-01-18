@@ -1,14 +1,26 @@
 import { useState } from "react"
 import axios from "axios";
 import DefaultURL from "../utils/GlobalVar";
+import Cookies from 'js-cookie';
 export default function ListGroup({firstTitle,secondTitle,thirdTitle,studentGradeList,isTeacher,teacherForClass,doSignal}){
    
     const[gradeToSend,setGradeToSend]=useState(null);
+
+
+  
+    const getTokenFromCookies = () => {
+        const tokenCookie = Cookies.get("_auth`");
+        return tokenCookie;
+      };
+    
+    const token ="Bearer "+ getTokenFromCookies();
+    const headers = { Authorization: token };
  
 const handleSubmit = (student) =>{
     postGrade(student);
 }
    
+
 const postGrade = async (student) => {
    
        
@@ -20,7 +32,8 @@ const postGrade = async (student) => {
             "grade":gradeToSend,
             "teacher":{"id":teacherForClass.id},
             "student":{"id":student.id}
-          }
+          },
+          {headers}
         );   
         doSignal();
 }

@@ -7,6 +7,15 @@ import DefaultURL from "../utils/GlobalVar";
 export default function StudentCard(){
     const[student,setStudent]=useState(null);
 
+ 
+    const getTokenFromCookies = () => {
+      const tokenCookie = Cookies.get("_auth`");
+      return tokenCookie;
+    };
+
+    const token ="Bearer "+ getTokenFromCookies();
+    const headers = { Authorization: token };
+
     const getEmailFromCookies = () => {
         const emailCookie = Cookies.get("_auth`_state");
         const extractedEmail = emailCookie ? JSON.parse(emailCookie).email : null;
@@ -20,7 +29,8 @@ export default function StudentCard(){
     const fetchAds = async () => {
       try {
         const response = await axios.get(
-          `${DefaultURL}/student/all/getStudentByEmail/${email}`
+          `${DefaultURL}/student/all/getStudentByEmail/${email}`,
+          {headers}
         );
 
         const data = response.data;

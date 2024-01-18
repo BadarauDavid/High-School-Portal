@@ -2,15 +2,27 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState , useEffect} from "react";
 import DefaultURL from "../utils/GlobalVar";
+import Cookies from 'js-cookie';
 export default function CreateClassroom(){
     const navigate = useNavigate();
     const[highSchools,setHighSchools]=useState([]);
+
+
+       const getTokenFromCookies = () => {
+        const tokenCookie = Cookies.get("_auth`");
+        return tokenCookie;
+      };
+
+      const token ="Bearer "+ getTokenFromCookies();
+      const headers = { Authorization: token };
+
     useEffect(() => {
      
         const fetchHighSchools = async () => {
             try {
               const response = await axios.get(
-                `${DefaultURL}/highSchool/admin/getAll`
+                `${DefaultURL}/highSchool/admin/getAll`,
+                {headers}
               );
       
               const data = response.data;
@@ -37,7 +49,8 @@ export default function CreateClassroom(){
           {
             "name":values.name,
             "highSchool":{"id":values.highSchool}
-          }
+          },
+          {headers}
         );
         
         navigate("/adminPanel");

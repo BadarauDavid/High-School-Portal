@@ -2,7 +2,19 @@ import axios from "axios";
 import { useEffect,useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DefaultURL from "../utils/GlobalVar";
+import Cookies from 'js-cookie';
 export default function AddSubjectTeacher(){
+
+
+        const getTokenFromCookies = () => {
+            const tokenCookie = Cookies.get("_auth`");
+            return tokenCookie;
+          };
+    
+          const token ="Bearer "+ getTokenFromCookies();
+          const headers = { Authorization: token };
+    
+
     const navigate = useNavigate();
     const[teachers,setTeachers]=useState([]);
     useEffect(() => {
@@ -10,7 +22,8 @@ export default function AddSubjectTeacher(){
         const fetchTeacher = async () => {
             try {
               const response = await axios.get(
-                `${DefaultURL}/teacher/admin/getAllTeacherWithSubjectEmpty`
+                `${DefaultURL}/teacher/admin/getAllTeacherWithSubjectEmpty`,
+                {headers}
               );
       
               const data = response.data;
@@ -38,6 +51,7 @@ export default function AddSubjectTeacher(){
          values.subject,  {
             headers: {
               'Content-Type': 'application/json',
+              'Authorization': token
             },
             }
         );

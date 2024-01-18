@@ -1,9 +1,20 @@
 import axios from "axios"
 import DefaultURL from "../utils/GlobalVar";
+ import Cookies from 'js-cookie';
 export default function PersonList({accounts,doSignal}){
 
+
+    const getTokenFromCookies = () => {
+      const tokenCookie = Cookies.get("_auth`");
+      return tokenCookie;
+    };
+  
+  const token ="Bearer "+ getTokenFromCookies();
+  const headers = { Authorization: token };
+
   const handleDelete =async (account)=>{
-   await axios.delete(`${DefaultURL}/user/admin/deleteById/${account.id}`)
+   await axios.delete(`${DefaultURL}/user/admin/deleteById/${account.id}`,
+   {headers})
     doSignal();
 
   }

@@ -1,8 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import DefaultURL from "../utils/GlobalVar";
+import Cookies from 'js-cookie';
 
 export default function CreateHighSchool(){
+
+
+    
+    const getTokenFromCookies = () => {
+        const tokenCookie = Cookies.get("_auth`");
+        return tokenCookie;
+      };
+    
+    const token ="Bearer "+ getTokenFromCookies();
+    const headers = { Authorization: token };
+
     const navigate = useNavigate();
 
   
@@ -12,7 +24,8 @@ export default function CreateHighSchool(){
       try {
         await axios.post(
           `${DefaultURL}/highSchool/admin/post`,
-          values
+          values,
+          {headers}
         );
         
         navigate("/adminPanel");

@@ -15,6 +15,15 @@ export default function Classbook(){
       setSignal(!signal);
     }
 
+   
+        const getTokenFromCookies = () => {
+          const tokenCookie = Cookies.get("_auth`");
+          return tokenCookie;
+        };
+  
+        const token ="Bearer "+ getTokenFromCookies();
+        const headers = { Authorization: token };
+
     const getEmailFromCookies = () => {
         const emailCookie = Cookies.get("_auth`_state");
         const extractedEmail = emailCookie ? JSON.parse(emailCookie).email : null;
@@ -27,7 +36,8 @@ export default function Classbook(){
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          `${DefaultURL}/student/teacher/getAllByClassroomId/${id}`
+          `${DefaultURL}/student/teacher/getAllByClassroomId/${id}`,
+          {headers}
         );
 
         const data = response.data;
@@ -42,7 +52,8 @@ export default function Classbook(){
     const fetchTeacher = async () => {
         try {
           const response = await axios.get(
-            `${DefaultURL}/teacher/teacher/getTeacherByEmail/${email}`
+            `${DefaultURL}/teacher/teacher/getTeacherByEmail/${email}`,
+            {headers}
           );
   
           const data = response.data;
