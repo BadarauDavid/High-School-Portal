@@ -3,6 +3,7 @@ import axios, { AxiosError } from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DefaultURL from "../utils/GlobalVar";
+
 export default function LoginPage(){
     const navigate = useNavigate();
     const [error, setError] = useState("");
@@ -24,6 +25,7 @@ export default function LoginPage(){
         });
         navigate("/");
       } catch (err) {
+        console.log(error);
         if (err instanceof AxiosError) setError(err.response?.data.message);
         else if (err instanceof Error) setError(err.message);
       }

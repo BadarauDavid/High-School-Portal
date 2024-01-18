@@ -3,13 +3,12 @@ import { useEffect,useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DefaultURL from "../utils/GlobalVar";
 import headers from "../utils/GlobalToken";
+
 export default function AddSubjectTeacher(){
-
-
-    
 
     const navigate = useNavigate();
     const[teachers,setTeachers]=useState([]);
+
     useEffect(() => {
      
         const fetchTeacher = async () => {
@@ -33,11 +32,7 @@ export default function AddSubjectTeacher(){
     
       }, []);
    
-   
     const onSubmit = async (values) => {
-
-  console.log(values.teacher);
-  console.log(values.subject);
       try {
         await axios.put(
           `${DefaultURL}/teacher/admin/addSubjectType/${values.teacher}`,

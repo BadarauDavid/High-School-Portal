@@ -3,14 +3,11 @@ import { useEffect,useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DefaultURL from "../utils/GlobalVar";
 import headers from "../utils/GlobalToken";
+
 export default function AddClassroomStudents(){
     const navigate = useNavigate();
     const[students,setStudents]=useState([]);
     const[classrooms,setClassrooms]=useState([]);
-
-
-
-  
 
     useEffect(() => {
      

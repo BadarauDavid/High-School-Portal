@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ListGroup from "../components/ListGroup";
-import Cookies from 'js-cookie';
+import email from "../utils/GlobalLoginEmail";
 import axios from "axios";
 import DefaultURL from "../utils/GlobalVar";
 import headers from "../utils/GlobalToken";
@@ -8,16 +8,6 @@ import headers from "../utils/GlobalToken";
 export default function StudentCard(){
     const[student,setStudent]=useState(null);
 
-
-    const getEmailFromCookies = () => {
-        const emailCookie = Cookies.get("_auth`_state");
-        const extractedEmail = emailCookie ? JSON.parse(emailCookie).email : null;
-        return extractedEmail;
-      };
-
-
-  const  email = getEmailFromCookies();
-    
   useEffect(() => {
     const fetchAccount = async () => {
       try {

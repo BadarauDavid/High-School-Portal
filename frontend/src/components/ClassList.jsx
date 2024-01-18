@@ -1,6 +1,5 @@
 import DefaultURL from "../utils/GlobalVar";
 import axios from "axios";
-
 import headers from "../utils/GlobalToken";
 
 export default function ClassList({listOfClass,contentButton,title,teacherId,doSignal}){

@@ -1,7 +1,8 @@
 import axios from "axios"
 import DefaultURL from "../utils/GlobalVar";
 import headers from "../utils/GlobalToken";
- import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 export default function PersonList({accounts,doSignal}){
   const nav = useNavigate();
 

@@ -4,14 +4,13 @@ import { useParams } from "react-router-dom"
 import headers from "../utils/GlobalToken";
 import { useEffect, useState } from "react";
 import ClassList from "../components/ClassList";
+
 export default function EditClassroomForTeacher(){
     const[teacher,setTeacher] = useState(null);
     const[classrooms,setClassrooms] = useState(null);
     const[signal,setSignal]=useState(true);
 
     const {id} = useParams();
-
-
 
       const getSignal = () =>{
         setSignal(!signal);

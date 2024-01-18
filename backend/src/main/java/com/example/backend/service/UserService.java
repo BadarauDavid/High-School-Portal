@@ -30,8 +30,10 @@ public class UserService {
 
 
     public void deleteUserDetailsById(Long id) {
-        Teacher teacher = teacherRepository.findTeacherByUser_Id(id).orElseThrow();
-        teacherRepository.delete(teacher);
+        Teacher teacher = teacherRepository.findTeacherByUser_Id(id).orElse(null);
+            if(teacher != null){
+                teacherRepository.delete(teacher);
+            }
         userRepository.deleteById(id);
     }
 

@@ -2,14 +2,12 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import DefaultURL from "../utils/GlobalVar";
 import headers from "../utils/GlobalToken";
+
 export default function CreateAccount(){
     const navigate = useNavigate();
 
- 
-  
     const onSubmit = async (values) => {
 
-  
       try {
       const response =  await axios.post(
           `${DefaultURL}/auth/admin/register`,

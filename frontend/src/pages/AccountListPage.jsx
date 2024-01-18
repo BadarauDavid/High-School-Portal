@@ -2,14 +2,11 @@ import PersonList from "../components/PersonList";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import DefaultURL from "../utils/GlobalVar";
-
 import headers from "../utils/GlobalToken";
+
 export default function AccountList(){
 const[allUsers,setAllusers]=useState([]);
 const[signal,setSignal] = useState(true);
-
-
-
 
 const getSignal = () =>{
     setSignal(!signal);

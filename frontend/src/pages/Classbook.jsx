@@ -3,9 +3,10 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
-import Cookies from 'js-cookie';
+import email from "../utils/GlobalLoginEmail";
 import DefaultURL from "../utils/GlobalVar";
 import headers from "../utils/GlobalToken";
+
 export default function Classbook(){
     const[teacher,setTeacher]=useState(null);
     const[students,setStudents]=useState(null);
@@ -15,16 +16,6 @@ export default function Classbook(){
     const getSignal = () =>{
       setSignal(!signal);
     }
-
-  
-
-    const getEmailFromCookies = () => {
-        const emailCookie = Cookies.get("_auth`_state");
-        const extractedEmail = emailCookie ? JSON.parse(emailCookie).email : null;
-        return extractedEmail;
-      };
-
-      const  email = getEmailFromCookies();
 
   useEffect(() => {
     const fetchStudents = async () => {
@@ -68,12 +59,9 @@ export default function Classbook(){
 return(
     <div className="container xl">
 
-
     <h1>
         Classbook for "{students && students[0].classroom.name}"
     </h1>
-
-
 
         <ListGroup 
         firstTitle={"Name"}

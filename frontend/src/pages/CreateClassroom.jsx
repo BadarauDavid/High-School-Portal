@@ -3,11 +3,10 @@ import axios from "axios";
 import { useState , useEffect} from "react";
 import DefaultURL from "../utils/GlobalVar";
 import headers from "../utils/GlobalToken";
+
 export default function CreateClassroom(){
     const navigate = useNavigate();
     const[highSchools,setHighSchools]=useState([]);
-
-
 
     useEffect(() => {
      

@@ -2,19 +2,15 @@ import { useState } from "react"
 import axios from "axios";
 import DefaultURL from "../utils/GlobalVar";
 import headers from "../utils/GlobalToken";
+
 export default function ListGroup({firstTitle,secondTitle,thirdTitle,studentGradeList,isTeacher,teacherForClass,doSignal}){
-   
-    const[gradeToSend,setGradeToSend]=useState(null);
- 
+const[gradeToSend,setGradeToSend]=useState(null);
+
 const handleSubmit = (student) =>{
     postGrade(student);
 }
-   
 
 const postGrade = async (student) => {
-   
-       
-
          await axios.post(
           `${DefaultURL}/grade/teacher/post`,
           {

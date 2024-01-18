@@ -5,16 +5,10 @@ import headers from "../utils/GlobalToken";
 
 export default function CreateHighSchool(){
 
-
-    
-
-
     const navigate = useNavigate();
 
-  
     const onSubmit = async (values) => {
 
-  
       try {
         await axios.post(
           `${DefaultURL}/highSchool/admin/post`,
