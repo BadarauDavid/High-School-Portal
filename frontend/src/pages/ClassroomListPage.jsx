@@ -4,21 +4,21 @@ import headers from "../utils/GlobalToken";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function HighSchoolListPage(){
-const [allHighschool, setAllHighSchool] = useState(null);
+export default function ClassroomListPage(){
+const [allClassroom, setAllClassroom] = useState(null);
 const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUsers = async () => {
           try {
             const response = await axios.get(
-              `${DefaultURL}/highSchool/admin/getAll`,
+              `${DefaultURL}/classroom/admin/getAll`,
               {headers}
             );
     
             const data = response.data;
     
-            setAllHighSchool(data);
+            setAllClassroom(data);
            
           } catch (err) {
             console.log(err);
@@ -36,21 +36,23 @@ const navigate = useNavigate();
             <tr>
               <th scope="col">#</th>
               <th scope="col">Name</th>
+              <th scope="col">HighSchool</th>
             </tr>
           </thead>
           <tbody>
-            {allHighschool &&
-              allHighschool.map((highSchool, index) => (
+            {allClassroom &&
+              allClassroom.map((classroom, index) => (
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
-                  <td>{highSchool.name}</td>
+                  <td>{classroom.name}</td>
+                  <td>{classroom.highSchool.name}</td>
                 </tr>
               ))}
           </tbody>
         </table>
 
         <div class="d-grid gap-2">
-  <button onClick={()=>navigate("/adminPanel/createHighSchool")} class="btn btn-primary" type="button">Add HighSchool</button>
+  <button onClick={()=>navigate("/adminPanel/createClassroom")} class="btn btn-primary" type="button">Add Classroom</button>
 </div>
         </div>
       );

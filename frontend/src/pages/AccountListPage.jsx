@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import DefaultURL from "../utils/GlobalVar";
 import headers from "../utils/GlobalToken";
+import { useNavigate } from "react-router-dom";
 
 export default function AccountList(){
 const[allUsers,setAllusers]=useState([]);
 const[signal,setSignal] = useState(true);
+const navigate = useNavigate();
 
 const getSignal = () =>{
     setSignal(!signal);
@@ -39,6 +41,13 @@ useEffect(() => {
         accounts={allUsers}
         doSignal = {getSignal}
         />
+                <div class="d-grid gap-2">
+  <button onClick={()=>navigate("/adminPanel/register")} class="btn btn-primary" type="button">Create Account</button>
+  <button onClick={()=>navigate("/adminPanel/addSubjectTeacher")} class="btn btn-primary" type="button">Add Subject to Teacher</button>
+  <button onClick={()=>navigate("/adminPanel/addClassroomStudents")} class="btn btn-primary" type="button">Add Classroom to Student</button>
+
+
+</div>
         </div>
     )
 }

@@ -38,13 +38,9 @@ const [admin,setAdmin]=useState(null);
         </h1>
 
         <ul className="list-group">
-        <li className="list-group-item list-group-item-success"><a href="/adminPanel/createClassroom">Create Classroom</a></li>
-        <li className="list-group-item list-group-item-success"><a href="/adminPanel/register">Create Account</a></li>
-        <li className="list-group-item list-group-item-warning"><a href="/adminPanel/addSubjectTeacher">Add Subject to Teacher</a></li>
-        <li className="list-group-item list-group-item-warning"><a href="/adminPanel/addClassroomStudents">Add Classroom to Student</a></li>
         <li className="list-group-item list-group-item-info"><a href="/adminPanel/accountList">Account List</a></li>
         <li className="list-group-item list-group-item-info"><a href="/adminPanel/highSchoolList">HighSchool List</a></li>
-
+        <li className="list-group-item list-group-item-info"><a href="/adminPanel/classroomList">Classroom List</a></li>
 </ul>
 
     </div>
