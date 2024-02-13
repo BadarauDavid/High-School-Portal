@@ -15,6 +15,7 @@ import AddSubjectTeacher from './pages/AddSubjectTeacher';
 import AddClassroomStudents from './pages/AddClassroomToStudent';
 import AccountList from './pages/AccountListPage';
 import EditClassroomForTeacher from './pages/EditClassroomForTeacher';
+import HighSchoolListPage from './pages/HighSchoolListPage';
 
 function App() {
   return (
@@ -70,6 +71,12 @@ function App() {
 <Route path="/adminPanel/accountList" element={
                  <RequireAuth loginPath="/login">
                 <AccountList/>
+               </RequireAuth>
+          }/>
+
+<Route path="/adminPanel/highSchoolList" element={
+                 <RequireAuth loginPath="/login">
+                <HighSchoolListPage/>
                </RequireAuth>
           }/>
 

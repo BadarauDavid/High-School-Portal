@@ -15,7 +15,7 @@ export default function ClassList({listOfClass,contentButton,title,teacherId,doS
     } 
 
     return(
-        <div className="col-6">
+        <div className="col-xl-6 col-12 ">
             <h5>{title}</h5>
         <table className="table" >
   <thead>
